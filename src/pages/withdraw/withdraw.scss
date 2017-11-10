@@ -1,0 +1,19 @@
+page-withdraw {
+    .fee-tip {
+        padding: 15px;
+        text-align: center;
+        font-size: 16px;
+        color: rgb(168,168,168);
+    }
+    .commit-btn {
+        padding: 0 15px;
+    }
+    .withdraw-tip {
+        font-size: 16px;
+        color: rgb(58, 58, 58);
+        .money {
+            color: color($colors, theme-red);
+            padding: 0 5px;
+        }
+    }
+}

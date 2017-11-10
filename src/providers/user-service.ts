@@ -237,7 +237,7 @@ export class UserService {
 
   private _sendSession(action, token, loc) {
     return new Promise((resolve, reject) => {
-      let device = `${this.device.model},${this.device.platform}${this.device.version},${this.device.isVirtual},${this.device.uuid}`;
+      let device = this.nativeService.getDeviceInfo();
       if (action === 'end') {
         this.storage.get('session_id').then(sid => {
           if (!sid) {
@@ -279,7 +279,7 @@ export class UserService {
     return new Promise((resolve, reject) => {
       this.token().then(token => {
         if (token) {
-          let device = `${this.device.model},${this.device.platform}${this.device.version},${this.device.isVirtual},${this.device.uuid}`;
+          let device = this.nativeService.getDeviceInfo();
           if (action === 'end') {
             this.storage.get('session_id').then(sid => {
               if (!sid) {

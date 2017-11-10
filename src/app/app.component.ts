@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { Platform, ModalController, Events } from 'ionic-angular';
+import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from "../pages/tabs/tabs";
 // import { AccountBindPage } from '../pages/account-bind/account-bind';
 import { UserService } from '../providers/user-service';
-import { ToolService } from '../providers/tool-service';
-import { LocationService } from "../providers/location-service";
+// import { ToolService } from '../providers/tool-service';
+// import { LocationService } from "../providers/location-service";
 // import { LoginPage } from '../pages/login/login';
 
-import { NativeService } from '../providers/native-service';
+// import { NativeService } from '../providers/native-service';
 
 @Component({
   templateUrl: 'app.html'
@@ -21,11 +21,11 @@ export class MyApp {
               statusBar: StatusBar, 
               splashScreen: SplashScreen,
               private users: UserService,
-              private tool: ToolService,
-              private modalCtrl: ModalController,
-              private locService: LocationService,
-              private events: Events,
-              private nativeService: NativeService
+              // private tool: ToolService,
+              // private modalCtrl: ModalController,
+              // private locService: LocationService,
+              // private events: Events,
+              // private nativeService: NativeService
               ) {
     platform.ready().then(() => {
 

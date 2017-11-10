@@ -6,12 +6,12 @@
 -->
 <ion-header no-border>
 
-  <ion-navbar hideBackButton>
-    <ion-buttons start>
+  <ion-navbar> <!-- hideBackButton -->
+    <!-- <ion-buttons start>
       <button ion-button icon-only (click)="goBack()">
         <ion-icon name="ios-arrow-back-outline"></ion-icon>
       </button>
-    </ion-buttons>
+    </ion-buttons> -->
     <ion-title>参与结果</ion-title>
   </ion-navbar>
 
@@ -32,6 +32,9 @@
     <div class="card" *ngIf="result.type === 'card'">
       <img [src]="result.image">
     </div>
+  </div>
+  <div padding>
+    <button ion-button block color="theme-red" (click)="gotoHome();">继续抢红包</button>
   </div>
   <!-- <div class="share-box" *ngIf="partin.can_share === true">
     <button ion-button block color="theme-red" (click)="doShare()">

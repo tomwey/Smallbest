@@ -1,0 +1,32 @@
+<!--
+  Generated template for the TradeList page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+
+  <ion-navbar>
+    <ion-title>交易明细</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <div class="empty-result" *ngIf="needsShowEmptyResult">
+    <p>没有交易明细~</p>
+  </div>
+  <ion-list *ngIf="trades.length > 0">
+    <ion-item *ngFor="let item of trades">
+      <h2 text-wrap>{{item.title}}</h2>
+      <p>{{item.time}}</p>
+      <ion-note item-right>{{item.money}} 元</ion-note>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" [enabled]="hasMore">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="正在加载...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

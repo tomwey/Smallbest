@@ -1,0 +1,31 @@
+page-wallet {
+    .content {
+        background-color: rgb(235, 235, 235);
+        padding: 0;
+        margin: 0;
+    }
+    .balance {
+        background-color: white;
+        width: 100%;
+        height: 188px;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 30px;
+        border-bottom: 1px solid rgb(188,186,193);
+        padding-top: 20px;
+        .label {
+            margin: 0;
+            padding: 0;
+            height: 30px;
+            font-size: 14px;
+            font-weight: normal;
+            color: rgb(168, 168, 168);
+        }
+        .money {
+            color: color($colors, theme-red);
+            // font-weight: bold;
+            font-size: 28px;
+        }
+    }
+}

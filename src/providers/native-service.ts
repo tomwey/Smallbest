@@ -41,6 +41,13 @@ export class NativeService {
   }
 
   /**
+   * 获取设备信息
+   */
+  getDeviceInfo(): string {
+    return `${this.device.model},${this.device.platform}${this.device.version},${this.device.isVirtual},${this.device.uuid}`;
+  }
+
+  /**
    * 是否真机环境
    * @return {boolean}
    */

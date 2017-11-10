@@ -1,0 +1,55 @@
+page-hb-owner-timeline {
+    .content {
+        background-color: rgb(249, 249, 247);
+    }
+    .prize-icon {
+        max-width: 36px;
+    }
+    
+    .caption {
+        position: relative;
+        background-color: color($colors, theme-red);
+        color: white;
+        padding-top: 30px;
+        padding-bottom: 10px;
+
+        .back-btn {
+            position:absolute;
+            z-index: 1;
+            left: 5px;
+            top: 5px;
+        }
+
+        .avatar {
+            display: block;
+            border: 0;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+        }
+
+        .nickname {
+            text-align: center;
+            font-size: 16px;
+            font-weight: normal;
+            margin-bottom: 20px;
+        }
+
+        .money-item {
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .money {
+            font-size: 20px;
+            font-weight: normal;
+        }
+
+        .unit {
+            font-size: 14px;
+            font-weight: normal;
+        }
+    }
+}

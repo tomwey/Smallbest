@@ -1,0 +1,43 @@
+page-hb-history {
+    .earnings {
+        text-align: center;
+        background-color: color($colors, theme-red);
+        padding: 30px 0;
+        border-bottom: 1px solid #b8b8b8;
+        color: white;
+        .avatar {
+            display: block;
+            width: 64px;
+            height: 64px;
+            margin: 0 auto;
+            // margin-top: 30px;
+            border-radius: 32px;
+            // border: 2px solid color($colors, golden);
+        }
+        .uid {
+            font-size: 18px;
+            font-weight: normal;
+            // color: rgb(138, 138, 138);
+        }
+
+        .earn-item {
+            padding-top: 20px;
+            font-size: 15px;
+            // color: rgb(138, 138, 138);
+            h4 {
+                margin: 0;
+                padding: 0;
+                font-weight: normal;
+                font-size: 15px;
+                .money {
+                    font-size: 28px;
+                    // color: rgb(58,58,58);
+                }
+            }
+            p {
+                margin: 0;
+                padding: 0;
+            }
+        }
+    }
+}

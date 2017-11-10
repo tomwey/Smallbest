@@ -47,6 +47,10 @@ export class PartinResultPage {
     this.app.getRootNavs()[0].popToRoot();
   }
 
+  gotoHome(): void {
+    this.app.getRootNavs()[0].popToRoot();
+  }
+
   doShare(): void {
     this.users.token().then(token => {
       window.location.href = `http://b.hb.small-best.com/wx/share/partin?id=${this.partin.id}&f=${token}`;
