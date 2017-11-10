@@ -1,0 +1,92 @@
+$font-path: '../assets/fonts';
+@font-face {
+  font-weight: normal;
+  font-style: normal;
+  font-family: 'custom-wallet';
+  src:  url('#{$font-path}/custom-wallet.eot?j8vzge');
+  src:  url('#{$font-path}/custom-wallet.eot?j8vzge#iefix') format('embedded-opentype'),
+    url('#{$font-path}/custom-wallet.ttf?j8vzge') format('truetype'),
+    url('#{$font-path}/custom-wallet.woff?j8vzge') format('woff'),
+    url('#{$font-path}/custom-wallet.svg?j8vzge#custom-wallet') format('svg');
+}
+
+// [class^="ion-"], [class*=" ion-"] {
+//   /* use !important to prevent issues with browser extensions that change fonts */
+//   font-family: 'custom-wallet' !important;
+//   speak: none;
+//   font-style: normal;
+//   font-weight: normal;
+//   font-variant: normal;
+//   text-transform: none;
+//   line-height: 1;
+
+//   /* Better Font Rendering =========== */
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+// }
+
+.custom-wallet {
+  font-family: 'custom-wallet' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  //   /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  speak: none;
+}
+
+.ion-ios-custom-wallet-outline:before, 
+.ion-ios-custom-wallet:before, 
+.ion-md-custom-wallet-outline:before, 
+.ion-md-custom-wallet:before, 
+.ion-ios-test-outline:before, 
+.ion-ios-test:before, 
+.ion-md-test-outline:before, 
+.ion-md-test:before {
+  @extend .custom-wallet;
+}
+
+.ion-ios-custom-wallet-outline:before {
+  content: '\e901';
+}
+
+.ion-ios-custom-wallet:before {
+  content: '\e901';
+}
+
+.ion-md-custom-wallet-outline:before {
+  content: '\e901';
+}
+
+.ion-md-custom-wallet:before {
+  content: '\e901';
+}
+
+.ion-ios-test-outline:before {
+  content: '\e901';
+}
+
+.ion-ios-test:before {
+  content: '\e901';
+}
+
+.ion-md-test-outline:before {
+  content: '\e901';
+}
+
+.ion-md-test:before {
+  content: '\e901';
+}
+
+// .ion-wall:before {
+//   content: "\e901";
+// }
+// .ion-icon_my_cards:before {
+//   content: "\e900";
+//   color: #8c8c8c;
+// }

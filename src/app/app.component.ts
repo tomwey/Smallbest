@@ -1,9 +1,15 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, ModalController, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { TabsPage } from "../pages/tabs/tabs";
+// import { AccountBindPage } from '../pages/account-bind/account-bind';
+import { UserService } from '../providers/user-service';
+import { ToolService } from '../providers/tool-service';
+import { LocationService } from "../providers/location-service";
+// import { LoginPage } from '../pages/login/login';
 
-import { TabsPage } from '../pages/tabs/tabs';
+import { NativeService } from '../providers/native-service';
 
 @Component({
   templateUrl: 'app.html'
@@ -11,12 +17,56 @@ import { TabsPage } from '../pages/tabs/tabs';
 export class MyApp {
   rootPage:any = TabsPage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(private platform: Platform, 
+              statusBar: StatusBar, 
+              splashScreen: SplashScreen,
+              private users: UserService,
+              private tool: ToolService,
+              private modalCtrl: ModalController,
+              private locService: LocationService,
+              private events: Events,
+              private nativeService: NativeService
+              ) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
+
+      statusBar.styleLightContent();
+      
+      if (platform.is('cordova')) {
+        platform.pause.subscribe(() => {
+          this.onPause();
+        });
+        platform.resume.subscribe(() => {
+          this.onResume();
+        });
+      }
+
+      this.sendUserSession2('begin');
+
+      this.checkVersion();
     });
+  }
+
+  private onPause() {
+    this.sendUserSession2('end');
+  }
+
+  private onResume() {
+    this.sendUserSession2('begin');
+
+    this.checkVersion();
+  }
+
+  private checkVersion() {
+    if (this.platform.is('cordova')) {
+      setTimeout(() => {
+        this.users.checkVersion().then(data => {
+          
+                }).catch(error => {});
+      }, 1000);
+    }
+  }
+
+  private sendUserSession2(action: string) {
+    this.users.sendSession(action);
   }
 }

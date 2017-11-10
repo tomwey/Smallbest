@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.5.2 (25235) - http://www.bohemiancoding.com/sketch -->
+    <title>Slice 1</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Group" sketch:type="MSLayerGroup" transform="translate(1.000000, 1.000000)">
+            <circle id="Oval-1" stroke="#BB402A" sketch:type="MSShapeGroup" cx="6" cy="6" r="6"></circle>
+            <text id="抢" sketch:type="MSTextLayer" font-family="PingFang SC" font-size="8" font-weight="normal" sketch:alignment="middle" fill="#BB402A">
+                <tspan x="2" y="9">抢</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

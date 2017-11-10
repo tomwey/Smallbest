@@ -1,3 +1,85 @@
 page-home {
+    .content {
+        background-color: rgb(249, 249, 249);
+    }
 
+    ion-title {
+        img {
+            max-height: 24px;
+            margin-top: 5px;
+        }
+    }
+
+    // 处理ion-refresher显示bug
+    .has-refresher > .scroll-content {
+        top: -1px !important;
+    }
+
+    .latest-events {
+        // margin-top: 5px;
+        // border-top: 1px solid #b8b8b8;
+        clear: both;
+        padding-bottom: 20px;
+
+        .no-more-data {
+            text-align: center;
+            padding: 20px 0;
+            color: rgb(168, 168, 168);
+        }
+
+        .caption-header {
+            text-align: center;
+            font-size: 18px;
+            padding: 20px 0 8px 0;
+            color: rgb(168, 168, 168);
+        }
+
+        .partin {
+            .prize-icon {
+                max-width: 36px;
+            }
+        }
+    }
+
+    .banners {
+        ion-slide {
+            background-color: rgb(247, 247, 247);
+        }
+        img {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            display: block;
+            max-width: 100%;
+            width: 100%;
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: color($colors, theme-red);
+        }
+
+        // .banner-btn {
+        //     // display: inline-block;
+
+        // }
+    }
+
+    .list-ios > .item-block:first-child {
+        border-top: 0!important;
+    }
+
+    .take-state {
+        // padding: 2px 4px;
+        background-color: color($colors, theme-red);
+        color: white;
+        font-size: 8px;
+        width: 27px;
+        height: 15px;
+        line-height: 15px;
+        border-radius: 2px;
+        text-align: center;
+        margin-top: 2px;
+        margin-left: 3px;
+    }
+    
 }

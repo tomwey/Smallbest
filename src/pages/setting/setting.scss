@@ -1,0 +1,86 @@
+page-setting {
+    .user-caption {
+        width: 100%;
+        // height: 188px;
+        background-color: color($colors, theme-red);
+        text-align:center;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        .user-balance {
+            margin-top: 20px;
+            color: white;
+            p {
+                margin: 0;
+                padding: 0;
+                font-size: 12px;
+                // color: color($colors, golden);
+            }
+            .money {
+                font-size: 28px;
+                padding: 0 5px;
+            }
+        }
+        .avatar {
+            display: block;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto;
+            border: 0;
+            border-radius: 30px;
+            -webkit-border-radius: 30px;
+            -moz-border-radius: 30px;
+            background-color: rgb(224,224,224);
+            // border: 1px solid white;
+        }
+        .uid {
+            color: white;
+            font-size: 14px;
+        }
+        
+        .earnings {
+            margin-top: 20px;
+            // margin-bottom: 30px;
+            ion-row {
+                padding: 0;
+                margin: 0;
+                // background-color: green;
+            }
+            ion-col {
+                padding: 0;
+                margin: 0;
+            }
+            p {
+                color: white;
+            }
+            .total {
+                // background-color: yellow;
+                text-align: right;
+                padding-right: 30px;
+            }
+            .today {
+                // background-color: gray;
+                text-align: left;
+                padding-left: 30px;
+                border-left: 1px solid white;
+            }
+            .label {
+                margin: 0;
+                padding: 0;
+                color: white;
+            }
+            .money {
+                margin: 0;
+                padding: 0;
+                font-size: 14px;
+            }
+            // .unit {
+            //     font-size: 12px;
+            // }
+        }
+    }
+
+    .balance {
+        color: color($colors, theme-red);
+        // font-size: 14px;
+    }
+}

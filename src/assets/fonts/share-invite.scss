@@ -1,0 +1,70 @@
+$font-path: '../assets/fonts';
+@font-face {
+  font-family: 'share-invite';
+  src:  url('#{$font-path}/share-invite.eot?sjmr8k');
+  src:  url('#{$font-path}/share-invite.eot?sjmr8k#iefix') format('embedded-opentype'),
+    url('#{$font-path}/share-invite.ttf?sjmr8k') format('truetype'),
+    url('#{$font-path}/share-invite.woff?sjmr8k') format('woff'),
+    url('#{$font-path}/share-invite.svg?sjmr8k#share-invite') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.share-invite {
+  font-family: 'share-invite' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  //   /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  speak: none;
+}
+
+.ion-ios-share-invite-outline:before, 
+.ion-ios-share-invite:before, 
+.ion-md-share-invite-outline:before, 
+.ion-md-share-invite:before, 
+.ion-ios-test-outline:before, 
+.ion-ios-test:before, 
+.ion-md-test-outline:before, 
+.ion-md-test:before {
+  @extend .share-invite;
+}
+
+.ion-ios-share-invite-outline:before {
+  content: '\e900';
+}
+
+.ion-ios-share-invite:before {
+  content: '\e900';
+}
+
+.ion-md-share-invite-outline:before {
+  content: '\e900';
+}
+
+.ion-md-share-invite:before {
+  content: '\e900';
+}
+
+.ion-ios-test-outline:before {
+  content: '\e900';
+}
+
+.ion-ios-test:before {
+  content: '\e900';
+}
+
+.ion-md-test-outline:before {
+  content: '\e900';
+}
+
+.ion-md-test:before {
+  content: '\e900';
+}
+

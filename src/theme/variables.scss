@@ -5,6 +5,11 @@
 // roboto, and noto sans fonts
 $font-path: "../assets/fonts";
 
+// 自定义图标
+@import "../assets/fonts/card-package";
+@import "../assets/fonts/custom-wallet";
+@import "../assets/fonts/dikou";
+@import "../assets/fonts/share-invite";
 
 // The app direction is used to include
 // rtl styles in your app. For more info, please see:
@@ -33,13 +38,42 @@ $app-direction: ltr;
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
 
+$theme-red: rgb(187,64,42); // FF5552
+
 $colors: (
   primary:    #488aff,
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  light-gray: #b7b7b7,
+  theme-red:  rgb(187,64,42),
+  golden:     rgb(228,196,129),
+  white:    white,
 );
+
+// 自定义TabBar的选中颜色
+$tabs-tab-color-active: $theme-red;
+
+// 自定义导航条的背景颜色
+$toolbar-background: $theme-red;
+
+$refresher-icon-color: $theme-red;
+$refresher-text-color: $theme-red;
+$refresher-border-color: transparent;
+
+$radio-ios-color-on: $theme-red;
+
+$loading-ios-max-width: 268px;
+$loading-ios-max-height: 88px;
+$loading-ios-background: white;
+$loading-ios-spinner-color: $theme-red;
+$loading-ios-text-color: $theme-red;
+
+$searchbar-ios-input-text-color: white;
+$searchbar-ios-input-placeholder-color: $searchbar-ios-input-text-color;
+$searchbar-ios-input-search-icon-color: $searchbar-ios-input-text-color;
+$searchbar-ios-input-clear-icon-color: $searchbar-ios-input-text-color;
 
 
 // App iOS Variables

@@ -1,0 +1,63 @@
+<ion-header no-border>
+  <ion-navbar>
+    <ion-title>
+      {{currentPositionDesc}}
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="refresh();">
+        <ion-icon name="ios-refresh-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="content">
+  <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="ios-arrow-round-down-outline"
+      pullingText="下拉刷新"
+      refreshingSpinner="crescent" 
+      refreshingText="加载中...">
+    </ion-refresher-content>
+  </ion-refresher> -->
+
+  <!-- banner -->
+  
+  <div class="empty-result" *ngIf="needShowEmptyResult">
+    <p>{{errorOrEmptyMessage}}</p>
+  </div>
+  <!-- 最新活动 -->
+  <div class="latest-events" *ngIf="hbData.length > 0">
+      <ion-card *ngFor="let hb of hbData" class="partin" tappable (click)="gotoDetail(hb)">
+          <!-- <div class="tool-mark">
+            <p class="share-hb bar" *ngIf="hb.has_shb === true">有分享红包</p>
+            <p class="grabed bar" *ngIf="hb.grabed === true">已抢</p>
+          </div> -->
+          <img *ngIf="hb.cover_image" [src]="hb.cover_image">
+          <ion-card-header>
+            {{hb.title}}
+          </ion-card-header>
+          <ion-item>
+            <ion-avatar item-left>
+              <img [src]="hb.owner.avatar">
+            </ion-avatar>
+            <h2 text-wrap>{{hb.owner.name}}</h2>
+            <p>{{hb.owner.bio}}</p>
+            <ion-note item-right>
+              <img src="assets/images/icon_{{hb.prize}}.png" class="prize-icon">
+              <p *ngIf="hb.taked === true" class="take-state">已抢</p>
+            </ion-note>
+          </ion-item>
+          <!-- <ion-card-content>
+            <ion-card-title>
+              <div class="earn">
+                <span class="left-money"><span class="symbol">¥</span> <span class="money2">{{hb.left_money}}</span></span>
+                
+              </div>
+              <div class="title">{{hb.title}}</div>
+            </ion-card-title>
+          </ion-card-content> -->
+        </ion-card>
+    <!-- <div class="no-more-data" *ngIf="!needShowEmptyResult">没有更多内容了~</div> -->
+  </div>
+</ion-content>

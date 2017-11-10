@@ -1,0 +1,88 @@
+$font-path: '../assets/fonts';
+@font-face {
+  font-weight: normal;
+  font-style: normal;
+  font-family: 'card-package';
+  src:  url('#{$font-path}/card-package.eot?hku4yc');
+  src:  url('#{$font-path}/card-package.eot?hku4yc#iefix') format('embedded-opentype'),
+    url('#{$font-path}/card-package.ttf?hku4yc') format('truetype'),
+    url('#{$font-path}/card-package.woff?hku4yc') format('woff'),
+    url('#{$font-path}/card-package.svg?hku4yc#card-package') format('svg');
+}
+
+// [class^="ion-"], [class*=" ion-"] {
+//   /* use !important to prevent issues with browser extensions that change fonts */
+//   font-family: 'card-package' !important;
+//   speak: none;
+//   font-style: normal;
+//   font-weight: normal;
+//   font-variant: normal;
+//   text-transform: none;
+//   line-height: 1;
+
+//   /* Better Font Rendering =========== */
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+// }
+.card-package {
+  font-family: 'card-package' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  //   /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  speak: none;
+}
+
+.ion-ios-smart-outline:before, 
+.ion-ios-smart:before, 
+.ion-md-smart-outline:before, 
+.ion-md-smart:before, 
+.ion-ios-test-outline:before, 
+.ion-ios-test:before, 
+.ion-md-test-outline:before, 
+.ion-md-test:before {
+  @extend .card-package;
+}
+
+// .ion-icon_my_cards:before {
+//   content: "\e900";
+//   color: #8c8c8c;
+// }
+
+.ion-ios-smart-outline:before {
+  content: '\e900';
+}
+
+.ion-ios-smart:before {
+  content: '\e900';
+}
+
+.ion-md-smart-outline:before {
+  content: '\e900';
+}
+
+.ion-md-smart:before {
+  content: '\e900';
+}
+
+.ion-ios-test-outline:before {
+  content: '\e900';
+}
+
+.ion-ios-test:before {
+  content: '\e900';
+}
+
+.ion-md-test-outline:before {
+  content: '\e900';
+}
+
+.ion-md-test:before {
+  content: '\e900';
+}

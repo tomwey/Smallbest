@@ -1,0 +1,42 @@
+<!--
+  Generated template for the PartinResultPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+
+  <ion-navbar hideBackButton>
+    <ion-buttons start>
+      <button ion-button icon-only (click)="goBack()">
+        <ion-icon name="ios-arrow-back-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>参与结果</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <div class="merchant-info">
+    <img [src]="partin.owner.avatar" class="avatar">
+    <p class="name">{{partin.owner.name}}</p>
+  </div>
+  <div class="partin-result">
+    {{resultDesc}}
+  </div>
+  <div class="partin-result-detail" *ngIf="!!result">
+    <div class="money" *ngIf="result.type === 'hb'">
+      {{result.money}}<span class="unit">元</span>
+    </div>
+    <div class="card" *ngIf="result.type === 'card'">
+      <img [src]="result.image">
+    </div>
+  </div>
+  <!-- <div class="share-box" *ngIf="partin.can_share === true">
+    <button ion-button block color="theme-red" (click)="doShare()">
+      {{ partin.has_share_prize === true ? '分享给朋友，继续赚奖励！' : '分享给朋友' }}
+    </button>
+    <button *ngIf="partin.has_share_prize === true" ion-button block clear color="theme-red" style="margin-top: 20px;" (click)="shareDesc()">分享奖励说明</button>
+  </div> -->
+</ion-content>

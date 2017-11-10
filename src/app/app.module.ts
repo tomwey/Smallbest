@@ -1,40 +1,80 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { HttpModule } from '@angular/http';
+import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
+// Pages
+import { HomePage }         from "../pages/home/home";
+import { NearbyPage }       from "../pages/nearby/nearby";
+import { SettingPage }      from "../pages/setting/setting";
+import { PartinDetailPage } from '../pages/partin-detail/partin-detail';
+import { CardPage }         from "../pages/card/card";
+import { TabsPage }         from '../pages/tabs/tabs';
 
-import { StatusBar } from '@ionic-native/status-bar';
+// Services
+import { NativeService }    from '../providers/native-service';
+import { GlobalData }       from '../providers/global-data';
+import { ApiService }       from '../providers/api-service';
+import { ToolService }      from '../providers/tool-service';
+import { LocationService }  from '../providers/location-service';
+import { UserService }      from '../providers/user-service';
+import { PayService }       from '../providers/pay-service';
+import { PartinsService }   from '../providers/partins-service';
+import { CardsService }     from '../providers/cards-service';
+import { BannersService}    from '../providers/banners-service';
+import { BadgesService}     from '../providers/badges-service';
+
+// ionic native
+import { StatusBar }    from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    NearbyPage,
+    SettingPage,
+    PartinDetailPage,
+    CardPage,
     HomePage,
     TabsPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    HttpModule,
+    IonicStorageModule.forRoot(),
+    IonicModule.forRoot(MyApp, {
+      // preloadModules: true,
+      mode: 'ios',
+      backButtonText: '',
+      // tabsHideOnSubPages: true,
+      // pageTransition: 'ios'
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    NearbyPage,
+    SettingPage,
+    PartinDetailPage,
+    CardPage,
     HomePage,
     TabsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    LocationService,
+    ApiService,
+    ToolService,
+    UserService,
+    PayService,
+    PartinsService,
+    BannersService,
+    CardsService,
+    BadgesService,
   ]
 })
 export class AppModule {}

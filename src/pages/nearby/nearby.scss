@@ -1,0 +1,297 @@
+page-nearby {
+    .content {
+        background-color: rgb(249, 249, 249);
+    }
+
+    ion-title {
+        img {
+            max-height: 24px;
+            margin-top: 5px;
+        }
+    }
+
+    // 处理ion-refresher显示bug
+    .has-refresher > .scroll-content {
+        top: -1px !important;
+    }
+
+    .partin {
+        .prize-icon {
+            max-width: 36px;
+        }
+    }
+    
+    .take-state {
+        // padding: 2px 4px;
+        background-color: color($colors, theme-red);
+        color: white;
+        font-size: 8px;
+        width: 27px;
+        height: 15px;
+        line-height: 15px;
+        border-radius: 2px;
+        text-align: center;
+        margin-top: 2px;
+        margin-left: 3px;
+    }
+    
+    .latest-events {
+        // margin-top: 5px;
+        // border-top: 1px solid #b8b8b8;
+        clear: both;
+        padding-bottom: 20px;
+        padding-top: 5px;
+        .no-more-data {
+            text-align: center;
+            padding: 20px 0;
+            color: rgb(168, 168, 168);
+        }
+    }
+
+    .redbag {
+        
+        ion-card-title {
+            clear: both;
+            padding: 0;
+            margin: 0;
+        }
+
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+
+        margin: 10px;
+        width: calc(100% - 20px);
+
+        position: relative;
+        .locate {
+            position: absolute;
+            z-index: 2;
+            bottom: 58px;
+            left: 8px;
+            // width: 50px;
+            // padding:6px;
+            // padding: 0 5px;
+            padding-left: 5px!important;
+            padding-right: 5px!important;
+            .pin-icon {
+                font-size: 12px;
+                color: rgb(18,18,18);
+                margin-top: 2px;
+                // padding-top: 2px;
+            }
+            // text-align: right;
+        }
+        .tool-mark {
+            position: absolute;
+            z-index: 2;
+            bottom: 58px;
+            right: 8px;
+            text-align: right;
+            // background-color: red;
+        }
+
+        .bar {
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            padding: 2px 0;
+            background-color: rgba(255,255,255,0.8);
+            border-radius: 2px;
+            text-align: center;
+            font-size: 10px;
+            color: rgb(88,88,88);
+        }
+        .grabed {
+            
+            width: 32px;
+            // height: 18px;
+            // line-height: 18px;
+            margin-left: 5px;
+            
+        }
+
+        .share-hb {
+            width: 60px;
+        }
+
+        // .grabed {
+        //     position: absolute;
+        //     z-index: 2;
+        //     bottom: 84px;
+        //     right: 10px;
+        //     width: 32px;
+        //     // height: 18px;
+        //     // line-height: 18px;
+        //     margin: 0;
+        //     padding: 0;
+        //     padding: 2px 0;
+        //     background-color: rgba(255,255,255,0.7);
+        //     border-radius: 2px;
+        //     text-align: center;
+        //     font-size: 10px;
+        //     color: rgb(88,88,88);
+        // }
+        // ion-card-title {
+        //     clear: both;
+        //     // padding-top: 10px;
+        // }
+        .earn {
+            text-align: right;
+            float: right;
+            width: 102px;
+            margin-bottom: 15px;
+        }
+
+        // .title {
+        //     float: left;
+        // }
+
+        .hb-size {
+            font-size: 12px;
+            color: rgb(168, 168, 168);
+            font-family: 'PingFang SC';
+            // background-image: url('../../assets/images/icon_quiz.svg');
+            background-position: left center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            padding-left: 20px;
+        }
+
+        .hb-bg-quiz {
+            background-image: url('../../assets/images/icon_quiz.svg');
+        }
+
+        .hb-bg-checkin {
+            background-image: url('../../assets/images/icon_checkin.svg');
+        }
+
+        .left-money {
+            // font-size: 18px;
+            color: color($colors, theme-red);
+            .money2 {
+                font-family: 'PingFang SC';
+            }
+        }
+
+        .symbol {
+            font-size: 10px;
+        }
+
+        .title {
+            font-size: 14px;
+        }
+    }
+
+    // ion-refresher {
+    //     margin-bottom: 0;
+    //     padding-bottom: 0;
+    // }
+    .banners {
+        ion-slide {
+            background-color: rgb(247, 247, 247);
+        }
+        img {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            display: block;
+            max-width: 100%;
+            width: 100%;
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: color($colors, theme-red);
+        }
+
+        // .banner-btn {
+        //     // display: inline-block;
+
+        // }
+    }
+
+    .money-symbol {
+        font-size: 10px;
+        padding-right: 5px;
+    }
+
+    .list-ios > .item-block:first-child {
+        border-top: 0!important;
+    }
+    
+    .circle {
+        display: table;
+        float: left;
+        width: 18px;
+        height: 18px;
+        text-align: center;
+        border-radius: 50%;
+        font-size: 8px;
+        background-color: color($colors, theme-red); 
+        color: white; 
+        margin-right: 5px;
+        span {
+            display: table-cell;
+            vertical-align: middle;
+        }
+    }
+
+    .outline {
+        border: 1px solid color($colors, theme-red);
+        color: color($colors, theme-red);
+        background-color: transparent;
+    }
+
+    .event {
+        .no-money {
+            position: absolute;
+            z-index: 10;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            border-radius: 30px;
+            border: 2px dashed color($colors, theme-red);
+            color: color($colors, theme-red);
+            top: 18px;
+            right: 20px;
+            font-size: 14px;
+            -ms-transform: rotate(-30deg); /* IE 9 */
+            -webkit-transform: rotate(-30deg); /* Chrome, Safari, Opera */
+            transform: rotate(-30deg);
+        }
+        .info {
+            margin-top: 6px;
+            margin-bottom: 6px;
+            clear: both;
+            .moneys {
+                display: block;
+                float: left;
+                height: 18px;
+                line-height: 18px;
+                // margin-left: 5px;
+            }
+        }
+        .address {
+            font-size: 14px;
+            clear: both;
+            ion-icon {
+                font-size: 22px;
+                float: left;
+                margin-right: 5px;
+            }
+            .hb-state-info {
+                color: color($colors, theme-red);
+                display: block;
+                float: left;
+                margin-top: 2px;
+            }
+        }
+        .title {
+            clear: both;
+            // line-height: 1;
+        }
+        .money {
+            color: color($colors, theme-red);
+            font-size: 18px;
+        }
+    }
+}
