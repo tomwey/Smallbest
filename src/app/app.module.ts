@@ -30,6 +30,16 @@ import { BadgesService}     from '../providers/badges-service';
 import { StatusBar }    from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { Network }      from '@ionic-native/network';
+import { Device }       from '@ionic-native/device';
+import { AppVersion }   from '@ionic-native/app-version';
+import { Market }       from '@ionic-native/market';
+import { Diagnostic }   from '@ionic-native/diagnostic';
+import {File}           from "@ionic-native/file";
+import {FileTransfer }  from '@ionic-native/file-transfer';
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -65,6 +75,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
+    InAppBrowser,
+    Network,
+    NativeService,
+    Device,
+    AppVersion,
+    Market,
+    Diagnostic,
+    File,
+    FileTransfer,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LocationService,
     ApiService,
@@ -75,6 +94,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     BannersService,
     CardsService,
     BadgesService,
+    GlobalData,
   ]
 })
 export class AppModule {}
