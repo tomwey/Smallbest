@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Platform, App } from 'ionic-angular';
+import { NavController, App } from 'ionic-angular';
 import { ToolService } from '../../providers/tool-service';
 // import { QQMaps } from '../../providers/qq-maps';
 import { LocationService } from "../../providers/location-service";
@@ -32,7 +32,7 @@ export class NearbyPage {
               // private banners: BannersService,
               // private qqMaps: QQMaps,
               private locService: LocationService,
-              private platform: Platform,
+              // private platform: Platform,
               private toolService: ToolService,
               // private users: UserService,
               private app: App,

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController, Platform, App } from 'ionic-angular';
+import { NavController, NavParams, ModalController, App } from 'ionic-angular';
 import { PartinsService } from '../../providers/partins-service';
 import { ToolService } from '../../providers/tool-service';
 import { UserService } from '../../providers/user-service';
@@ -41,7 +41,7 @@ export class PartinDetailPage {
     private toolService: ToolService,
     private modalCtrl: ModalController,
     private users: UserService,
-    private platform: Platform,
+    // private platform: Platform,
     private badges: BadgesService,
     private app: App,
   ) {

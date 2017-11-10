@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController, App, Platform, Events } from 'ionic-angular';
+import { NavController, ModalController, App, Events } from 'ionic-angular';
 // import { WalletPage } from '../wallet/wallet';
 import { UserService } from '../../providers/user-service'; 
 import { ToolService } from '../../providers/tool-service';
@@ -24,7 +24,7 @@ export class SettingPage {
               private tool: ToolService,
               private modalCtrl: ModalController,
               private app: App,
-              private platform: Platform,
+              // private platform: Platform,
               private events: Events,
               ) {
       // this.loadUserProfile();

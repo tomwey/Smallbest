@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Platform, Slides, App, AlertController } from 'ionic-angular';
+import { NavController, Slides, App, AlertController } from 'ionic-angular';
 import { ToolService } from '../../providers/tool-service';
 // import { QQMaps } from '../../providers/qq-maps';
-import { LocationService } from "../../providers/location-service";
+// import { LocationService } from "../../providers/location-service";
 // import { EventsService } from '../../providers/events-service';
 import { PartinsService } from "../../providers/partins-service";
 import { BannersService } from '../../providers/banners-service';
@@ -37,7 +37,7 @@ export class HomePage {
               private partins: PartinsService,
               private banners: BannersService,
               // private qqMaps: QQMaps,
-              private locService: LocationService,
+              // private locService: LocationService,
               // private platform: Platform,
               private toolService: ToolService,
               private users: UserService,

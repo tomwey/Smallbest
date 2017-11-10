@@ -6,10 +6,10 @@ import { Market } from '@ionic-native/market';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { AppVersion } from '@ionic-native/app-version';
 import { Device } from '@ionic-native/device';
-import {File, FileEntry} from "@ionic-native/file";
+import {File} from "@ionic-native/file";
 import {FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 
-import {Observable} from "rxjs";
+import { Observable } from 'rxjs/Observable';
 
 import { GlobalData } from "./global-data";
 
