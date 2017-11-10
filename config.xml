@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>MyApp</name>
+<widget id="com.kekestudio.smallbest" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>smallbest</name>
     <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+    <author email="tomwey@163.com" href="http://small-best.com/">Afterwind</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -88,4 +88,6 @@
     <plugin name="cordova-plugin-market" spec="^1.2.0" />
     <plugin name="cordova-plugin-file" spec="^4.3.3" />
     <plugin name="cordova-plugin-file-transfer" spec="^1.6.3" />
+    <plugin name="com.kit.cordova.amaplocation" spec="https://github.com/yanxiaojun617/com.kit.cordova.amaplocation" />
+    <engine name="android" spec="~6.2.3" />
 </widget>
