@@ -30,6 +30,7 @@ export class MyApp {
     platform.ready().then(() => {
 
       statusBar.styleLightContent();
+      splashScreen.hide();
       
       if (platform.is('cordova')) {
         platform.pause.subscribe(() => {
@@ -62,7 +63,7 @@ export class MyApp {
         this.users.checkVersion().then(data => {
           
                 }).catch(error => {});
-      }, 1000);
+      }, 100);
     }
   }
 

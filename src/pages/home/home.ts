@@ -74,10 +74,10 @@ export class HomePage {
     // console.log(this.slides);
     this.app.setTitle('小优大惠');
 
-    if (!this.hasHideSplash) {
-      this.hasHideSplash = true;
-      this.splashScreen.hide();
-    }
+    // if (!this.hasHideSplash) {
+    //   this.hasHideSplash = true;
+    //   this.splashScreen.hide();
+    // }
     
     if (this.slides) {
       // this.slides.loop = true;

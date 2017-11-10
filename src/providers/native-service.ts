@@ -63,6 +63,7 @@ export class NativeService {
   }
 
   downloadApp(appIdOrUrl) {
+    alert(appIdOrUrl);
     if (this.isIos) {
       this.market.open(appIdOrUrl);
     } else {
