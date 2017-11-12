@@ -7,7 +7,7 @@ import { ToolService } from '../../providers/tool-service';
 import { PartinsService } from "../../providers/partins-service";
 import { BannersService } from '../../providers/banners-service';
 import { UserService } from '../../providers/user-service';
-import { SplashScreen } from '@ionic-native/splash-screen';
+// import { SplashScreen } from '@ionic-native/splash-screen';
 
 // import { EventDetailPage } from "../event-detail/event-detail";
 import { PartinDetailPage } from '../partin-detail/partin-detail';
@@ -42,7 +42,7 @@ export class HomePage {
               private toolService: ToolService,
               private users: UserService,
               private app: App,
-              private splashScreen: SplashScreen,
+              // private splashScreen: SplashScreen,
               private alertCtrl: AlertController
               ) 
   {
