@@ -28,9 +28,11 @@ export class MyApp {
               // private nativeService: NativeService
               ) {
     platform.ready().then(() => {
-
       statusBar.styleLightContent();
+
       splashScreen.hide();
+
+      // statusBar.show();
       
       if (platform.is('cordova')) {
         platform.pause.subscribe(() => {

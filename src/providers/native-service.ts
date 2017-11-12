@@ -63,10 +63,16 @@ export class NativeService {
   }
 
   downloadApp(appIdOrUrl) {
+    // alert(appIdOrUrl);
+    this.alertCtrl.create({
+      title: appIdOrUrl,
+      buttons: [{
+        text: 'ok',
+      }]
+    }).present();
     if (this.isIos()) {
-      this.market.open(appIdOrUrl);
+      this.market.open('691747755');
     } else {
-      alert(appIdOrUrl);
       if (this.isAndroid()) {
         alert(appIdOrUrl);
         this.downloadAndroid(appIdOrUrl);
