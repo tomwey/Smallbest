@@ -37,7 +37,14 @@ export class NativeService {
    * 获取app相关信息
    */
   getAppVersion(): Promise<any> {
-    return this.appVersion.getVersionNumber();
+    if (this.isMobile()) {
+      return this.appVersion.getVersionNumber();
+    } else {
+      // 非手机
+      return new Promise((resolve) => {
+        resolve(null);
+      })
+    }
   }
 
   /**
@@ -229,11 +236,11 @@ export class NativeService {
             ]
           }).present();
         } else if (msg.indexOf('WIFI信息不足') != -1) {
-          alert('定位失败,请确保连上WIFI或者关掉WIFI只开流量数据')
+          // alert('定位失败,请确保连上WIFI或者关掉WIFI只开流量数据')
         } else if (msg.indexOf('网络连接异常') != -1) {
-          alert('网络连接异常,请检查您的网络是否畅通')
+          // alert('网络连接异常,请检查您的网络是否畅通')
         } else {
-          alert('位置错误,错误消息:' + msg);
+          // alert('位置错误,错误消息:' + msg);
           // this.logger.log(msg, '获取位置失败');
         }
       });

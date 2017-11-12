@@ -19,6 +19,8 @@ import { AlertController } from 'ionic-angular';
 @Injectable()
 export class UserService {
   // authToken: string = '';
+  hasShownVersionAlert: boolean = false;
+
   constructor(private api: ApiService,
               private storage: Storage,
               private device: Device,
@@ -237,39 +239,42 @@ export class UserService {
 
   private _sendSession(action, token, loc) {
     return new Promise((resolve, reject) => {
-      let device = this.nativeService.getDeviceInfo();
-      if (action === 'end') {
-        this.storage.get('session_id').then(sid => {
-          if (!sid) {
-            resolve(false);
-          } else {
-            this.api.post('user/session/end', 
-              { token: token, 
-                sid: sid, 
-                loc: loc, 
-                network: this.nativeService.getNetworkType(), 
-                version: APP_VERSION,
-                device: device,
-               })
-              .then(data => {
-                // if (data.sid === sid)
-                //   this.storage.remove('session_id');
-                resolve(true);
-              })
-              .catch(error => reject(error));
-          }
-        });
-      } else {
-        this.api.post('user/session/begin', 
-          { token: token, loc: loc, network: this.nativeService.getNetworkType(), 
-            version: APP_VERSION, device: device })
-          .then(data => {
-            if (data.sid)
-              this.storage.set('session_id', data.sid);
-            resolve(data);
-          })
-          .catch(error => reject(error));
-      }
+      this.nativeService.getAppVersion().then(version => {
+        let device = this.nativeService.getDeviceInfo();
+        if (action === 'end') {
+          this.storage.get('session_id').then(sid => {
+            if (!sid) {
+              resolve(false);
+            } else {
+              this.api.post('user/session/end', 
+                { token: token, 
+                  sid: sid, 
+                  loc: loc, 
+                  network: this.nativeService.getNetworkType(), 
+                  version: version || APP_VERSION,
+                  device: device,
+                 })
+                .then(data => {
+                  // if (data.sid === sid)
+                  //   this.storage.remove('session_id');
+                  resolve(true);
+                })
+                .catch(error => reject(error));
+            }
+          });
+        } else {
+          this.api.post('user/session/begin', 
+            { token: token, loc: loc, network: this.nativeService.getNetworkType(), 
+              version: version || APP_VERSION, device: device })
+            .then(data => {
+              if (data.sid)
+                this.storage.set('session_id', data.sid);
+              resolve(data);
+            })
+            .catch(error => reject(error));
+        }
+      });
+      
     });
     
   }
@@ -322,49 +327,59 @@ export class UserService {
   /**
    * 用户版本更新
    */
-  checkVersion(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.token().then(token => {
-        this.nativeService.getAppVersion().then(value => {
-          this.api.get('user/check_version', 
-          { token: token, 
-            m: this.device.model,
-            os: this.device.platform,
-            osv: this.device.version,
-            bv: value,
-           }).then(resp => {
-            // this.nativeService.downloadApp();
-            // alert(data);
-            let buttons;
-            if (resp.must_upgrade === true) {
-              buttons = [{ text: '立即更新',
-                           handler: data => {
-                            this.nativeService.downloadApp(resp.app_url);
-                           } }];
-            } else {
-              buttons = [{ text: '不了',
-              handler: data => {
-              //  this.nativeService.downloadApp(data.url);
-              } },
-              { text: '立即更新',
-              handler: data => {
-               this.nativeService.downloadApp(resp.app_url);
-              } },
-            ];
-            }
-            // alert(JSON.stringify(data));
-            let log = resp.change_log.replace('\r\n', '\n');
+  checkVersion(): void {
+    this.token().then(token => {
+      this.nativeService.getAppVersion().then(value => {
+        this.api.get('user/check_version', 
+        { token: token, 
+          m: this.device.model,
+          os: this.device.platform,
+          osv: this.device.version,
+          bv: value,
+          })
+        .then(resp => {
+          this._showVersionUpgradeAlert(resp);
+        })
+        .catch(error => {}); // end api get
+      }); // end getAppVersion
+    }); // end token
+  } // end checkVersion
 
-            this.alertCtrl.create({
-              title: `发现新版本${resp.version}`,
-              subTitle: log.replace('\n', '<br>'),
-              buttons: buttons,
-              enableBackdropDismiss: false,
-            }).present();
-           }).catch(error => { });
-        });
-      });
-    });
+  private _showVersionUpgradeAlert(resp) {
+    let buttons;
+    if (resp.must_upgrade === true) {
+      buttons = [{ text: '立即更新',
+                    handler: data => {
+                      this.hasShownVersionAlert = false;
+                      this.nativeService.downloadApp(resp.app_url);
+                    } }];
+    } else {
+      buttons = [
+        { 
+          text: '不了',
+          handler: data => {
+            this.hasShownVersionAlert = false;
+          } 
+        },
+        { 
+          text: '立即更新',
+          handler: data => {
+            this.hasShownVersionAlert = false;
+
+            this.nativeService.downloadApp(resp.app_url);
+          } 
+        },
+      ];
+    }
+
+    if (!this.hasShownVersionAlert) {
+      this.hasShownVersionAlert = true;
+      this.alertCtrl.create({
+        title: `发现新版本${resp.version}`,
+        subTitle: resp.change_log,
+        buttons: buttons,
+        enableBackdropDismiss: false,
+      }).present();
+    }
   }
-
 }

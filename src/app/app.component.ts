@@ -30,12 +30,11 @@ export class MyApp {
     platform.ready().then(() => {
       statusBar.styleLightContent();
 
+      // 隐藏splash
       setTimeout(() => {
         splashScreen.hide();
       },100);
 
-      // statusBar.show();
-      
       if (platform.is('cordova')) {
         platform.pause.subscribe(() => {
           this.onPause();
@@ -58,15 +57,13 @@ export class MyApp {
   private onResume() {
     this.sendUserSession2('begin');
 
-    // this.checkVersion();
+    this.checkVersion();
   }
 
   private checkVersion() {
     if (this.platform.is('cordova')) {
       setTimeout(() => {
-        this.users.checkVersion().then(data => {
-          
-                }).catch(error => {});
+        this.users.checkVersion();
       }, 100);
     }
   }
