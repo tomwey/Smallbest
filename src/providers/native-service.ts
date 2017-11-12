@@ -8,6 +8,7 @@ import { Device } from '@ionic-native/device';
 import {File} from "@ionic-native/file";
 import {FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { FileOpener } from '@ionic-native/file-opener';
+import { Storage } from '@ionic/storage';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -30,6 +31,7 @@ export class NativeService {
     private file: File,
     private fileOpener: FileOpener,
     private globalData: GlobalData,
+    private storage: Storage,
   ) {
   }
 
@@ -45,6 +47,21 @@ export class NativeService {
         resolve(null);
       })
     }
+  }
+
+  /**
+   * 获取设备UUID
+   */
+  getUUID(): Promise<any> {
+    return new Promise((resolve) => {
+      this.storage.get('u.uuid').then(uuid => {
+        if (!uuid) {
+          uuid = this.device.uuid || ('sb:' + this.getRandomString(20));
+          this.storage.set('u.uuid', uuid);
+        }
+        resolve(uuid);
+      });
+    });
   }
 
   /**
@@ -357,5 +374,16 @@ export class NativeService {
       });
     };
   })();
+
+  getRandomString(len): string {
+    len = len || 32;
+  　　var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';    /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
+  　　var maxPos = $chars.length;
+  　　var pwd = '';
+  　　for (var i = 0; i < len; i++) {
+  　　　　pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
+  　　}
+  　　return pwd;
+  }
   
 }

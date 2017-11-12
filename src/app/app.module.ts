@@ -37,8 +37,7 @@ import { AppVersion }   from '@ionic-native/app-version';
 import { Diagnostic }   from '@ionic-native/diagnostic';
 import {File}           from "@ionic-native/file";
 import {FileTransfer }  from '@ionic-native/file-transfer';
-import { FileOpener } from '@ionic-native/file-opener';
-
+import { FileOpener }   from '@ionic-native/file-opener';
 
 @NgModule({
   declarations: [

@@ -45,33 +45,9 @@ export class UserService {
     });
   }
 
-  getRandomString(len): string {
-    len = len || 32;
-  　　var $chars = 'ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678';    /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
-  　　var maxPos = $chars.length;
-  　　var pwd = '';
-  　　for (var i = 0; i < len; i++) {
-  　　　　pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
-  　　}
-  　　return pwd;
-  }
-
-  getUUID(): Promise<any> {
-    return new Promise((resolve) => {
-      this.storage.get('u.uuid').then(uuid => {
-        if (!uuid) {
-          uuid = this.device.uuid || ('sb:' + this.getRandomString(20));
-          this.storage.set('u.uuid', uuid);
-        }
-
-        resolve(uuid);
-      });
-    });
-  }
-
   signup(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.getUUID().then(uuid => {
+      this.nativeService.getUUID().then(uuid => {
         this.api.post('account/app_signup', { uuid: this.device.uuid || '0',
                                               model: this.device.model || 'browser',
                                               os: this.device.platform || 'web',
