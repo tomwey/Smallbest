@@ -332,14 +332,14 @@ export class UserService {
             os: this.device.platform,
             osv: this.device.version,
             bv: value,
-           }).then(data => {
+           }).then(resp => {
             // this.nativeService.downloadApp();
             // alert(data);
             let buttons;
-            if (data.must_upgrade === true) {
+            if (resp.must_upgrade === true) {
               buttons = [{ text: '立即更新',
                            handler: data => {
-                            this.nativeService.downloadApp(data.app_url);
+                            this.nativeService.downloadApp(resp.app_url);
                            } }];
             } else {
               buttons = [{ text: '不了',
@@ -348,13 +348,16 @@ export class UserService {
               } },
               { text: '立即更新',
               handler: data => {
-               this.nativeService.downloadApp(data.app_url);
+               this.nativeService.downloadApp(resp.app_url);
               } },
             ];
             }
+            // alert(JSON.stringify(data));
+            let log = resp.change_log.replace('\r\n', '\n');
+
             this.alertCtrl.create({
-              title: `发现新版本${data.version}`,
-              subTitle: data.change_log.replace('\n', '<br>'),
+              title: `发现新版本${resp.version}`,
+              subTitle: log.replace('\n', '<br>'),
               buttons: buttons,
               enableBackdropDismiss: false,
             }).present();

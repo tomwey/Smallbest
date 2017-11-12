@@ -64,17 +64,18 @@ export class NativeService {
 
   downloadApp(appIdOrUrl) {
     // alert(appIdOrUrl);
-    this.alertCtrl.create({
-      title: appIdOrUrl,
-      buttons: [{
-        text: 'ok',
-      }]
-    }).present();
+    // this.alertCtrl.create({
+    //   title: appIdOrUrl,
+    //   buttons: [{
+    //     text: 'ok',
+    //   }]
+    // }).present();
     if (this.isIos()) {
-      this.market.open('691747755');
+      // this.market.open('691747755');
+      window.open('itms-apps://itunes.apple.com/app/691747755');
     } else {
       if (this.isAndroid()) {
-        alert(appIdOrUrl);
+        // alert(appIdOrUrl);
         this.downloadAndroid(appIdOrUrl);
       }
     }

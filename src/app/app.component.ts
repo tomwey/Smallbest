@@ -58,7 +58,7 @@ export class MyApp {
   private onResume() {
     this.sendUserSession2('begin');
 
-    this.checkVersion();
+    // this.checkVersion();
   }
 
   private checkVersion() {
