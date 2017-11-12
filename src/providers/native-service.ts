@@ -8,6 +8,7 @@ import { AppVersion } from '@ionic-native/app-version';
 import { Device } from '@ionic-native/device';
 import {File} from "@ionic-native/file";
 import {FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+import { FileOpener } from '@ionic-native/file-opener';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -29,6 +30,7 @@ export class NativeService {
     private diagnostic: Diagnostic,
     private transfer: FileTransfer,
     private file: File,
+    private fileOpener: FileOpener,
     private globalData: GlobalData,
   ) {
   }
@@ -99,7 +101,12 @@ export class NativeService {
       const apk = this.file.externalRootDirectory + 'download/' + `android_${new Date().getTime()}.apk`; //apk保存的目录
       //下载并安装apk
       fileTransfer.download(appIdOrUrl, apk).then(() => {
-        window['install'].install(apk.replace('file://', ''));
+        // window['install'].install(apk.replace('file://', ''));
+        this.fileOpener.open(apk, 'application/vnd.android.package-archive').then(() => {
+
+        }).catch(error => {
+          // alert(error);
+        });
       }, err => {
         this.globalData.updateProgress = -1;
         alert.dismiss();

@@ -38,6 +38,7 @@ import { Market }       from '@ionic-native/market';
 import { Diagnostic }   from '@ionic-native/diagnostic';
 import {File}           from "@ionic-native/file";
 import {FileTransfer }  from '@ionic-native/file-transfer';
+import { FileOpener } from '@ionic-native/file-opener';
 
 
 @NgModule({
@@ -84,6 +85,7 @@ import {FileTransfer }  from '@ionic-native/file-transfer';
     Diagnostic,
     File,
     FileTransfer,
+    FileOpener,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LocationService,
     ApiService,
