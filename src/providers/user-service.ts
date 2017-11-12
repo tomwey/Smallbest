@@ -377,6 +377,7 @@ export class UserService {
       this.alertCtrl.create({
         title: `发现新版本${resp.version}`,
         subTitle: resp.change_log,
+        cssClass: 'upgrade-alert',
         buttons: buttons,
         enableBackdropDismiss: false,
       }).present();
