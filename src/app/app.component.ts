@@ -30,7 +30,9 @@ export class MyApp {
     platform.ready().then(() => {
       statusBar.styleLightContent();
 
-      splashScreen.hide();
+      setTimeout(() => {
+        splashScreen.hide();
+      },100);
 
       // statusBar.show();
       
