@@ -34,7 +34,6 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Network }      from '@ionic-native/network';
 import { Device }       from '@ionic-native/device';
 import { AppVersion }   from '@ionic-native/app-version';
-import { Market }       from '@ionic-native/market';
 import { Diagnostic }   from '@ionic-native/diagnostic';
 import {File}           from "@ionic-native/file";
 import {FileTransfer }  from '@ionic-native/file-transfer';
@@ -81,7 +80,6 @@ import { FileOpener } from '@ionic-native/file-opener';
     NativeService,
     Device,
     AppVersion,
-    Market,
     Diagnostic,
     File,
     FileTransfer,

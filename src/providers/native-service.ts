@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Platform, AlertController } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Network } from '@ionic-native/network';
-import { Market } from '@ionic-native/market';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { AppVersion } from '@ionic-native/app-version';
 import { Device } from '@ionic-native/device';
@@ -25,7 +24,6 @@ export class NativeService {
     private inAppBrowser: InAppBrowser,
     private appVersion: AppVersion,
     private device: Device,
-    private market: Market,
     private alertCtrl: AlertController,
     private diagnostic: Diagnostic,
     private transfer: FileTransfer,
@@ -65,19 +63,10 @@ export class NativeService {
   }
 
   downloadApp(appIdOrUrl) {
-    // alert(appIdOrUrl);
-    // this.alertCtrl.create({
-    //   title: appIdOrUrl,
-    //   buttons: [{
-    //     text: 'ok',
-    //   }]
-    // }).present();
     if (this.isIos()) {
-      // this.market.open('691747755');
-      window.open('itms-apps://itunes.apple.com/app/691747755');
+      window.open(appIdOrUrl);
     } else {
       if (this.isAndroid()) {
-        // alert(appIdOrUrl);
         this.downloadAndroid(appIdOrUrl);
       }
     }
@@ -101,9 +90,7 @@ export class NativeService {
       const apk = this.file.externalRootDirectory + 'download/' + `android_${new Date().getTime()}.apk`; //apk保存的目录
       //下载并安装apk
       fileTransfer.download(appIdOrUrl, apk).then(() => {
-        // window['install'].install(apk.replace('file://', ''));
         this.fileOpener.open(apk, 'application/vnd.android.package-archive').then(() => {
-
         }).catch(error => {
           // alert(error);
         });
@@ -214,15 +201,6 @@ export class NativeService {
             })
           }
         })
-
-        // LocationPlugin.getLocation(data => {
-        //   // alert(JSON.stringify(data));
-        //   resolve({lng: data.longitude, lat: data.latitude});
-        // }, msg => {
-        //   // console.error('定位错误消息' + msg);
-        //   // alert(msg.indexOf('缺少定位权限') == -1 ? ('错误消息：' + msg) : '缺少定位权限，请在手机设置中开启');
-        //   reject('定位失败');
-        // });
       } else {
         console.log('非手机环境,即测试环境返回固定坐标');
         resolve({lng: 104.350912, lat: 30.670543});
