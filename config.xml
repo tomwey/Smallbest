@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.kekestudio.smallbest" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>smallbest</name>
+    <name>小优大惠</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="tomwey@163.com" href="http://small-best.com/">Afterwind</author>
     <content src="index.html" />
@@ -79,6 +79,7 @@
         <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
     </platform>
     <allow-navigation href="http://192.168.0.105:8101" />
+    <allow-navigation href="http://192.168.43.180:8100" />
     <engine name="android" spec="^6.2.3" />
     <engine name="ios" spec="^4.4.0" />
     <plugin name="com.kit.cordova.amaplocation" spec="git+https://github.com/yanxiaojun617/com.kit.cordova.amaplocation.git" />
@@ -96,5 +97,4 @@
     <plugin name="cordova-plugin-whitelist" spec="^1.3.1" />
     <plugin name="cordova.plugins.diagnostic" spec="^3.7.1" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
-    <allow-navigation href="http://192.168.43.180:8100" />
 </widget>
