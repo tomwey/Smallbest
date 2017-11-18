@@ -66,7 +66,7 @@ export class NearbyPage {
       this.toolService.showLoading('拼命加载中...');
     }
     
-    this.locService.getUserPosition(true)
+    this.locService.getUserPosition(true, true)
       .then(pos => {
         // 获取广告红包
         this.loadEvents(pos)
@@ -80,6 +80,7 @@ export class NearbyPage {
         this.parseUserLocation(pos); 
       })
       .catch(error => {
+        this.toolService.hideLoading();
         this.errorOrEmptyMessage = '无法获取位置，请开启定位重试！';
         this.currentPositionDesc = '定位失败!';
         this.needShowEmptyResult = true;
@@ -117,6 +118,8 @@ export class NearbyPage {
           //   this.eventsData = data.data || data;
 
             this.needShowEmptyResult = this.hbData.length === 0;
+
+            this.errorOrEmptyMessage = '暂无数据';
           // } else {
           //   let temp = this.eventsData || [];
           //   this.eventsData = temp.concat(data.data || data);
@@ -130,12 +133,15 @@ export class NearbyPage {
           resolve(true);
         })
         .catch(error => {
+
+          this.toolService.hideLoading();
+
           // reject(error);
           resolve(false);
 
           setTimeout(() => {
-            this.toolService.showToast(error);
-          }, 20);
+            this.toolService.showToast('数据加载失败');
+          }, 100);
         });
     });
   }

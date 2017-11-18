@@ -22,9 +22,9 @@ export class LocationService {
    * @param reload 是否强制重新获取位置
    * @returns {Promise}
    */
-  getUserPosition(reload: boolean = false): Promise<any> {
+  getUserPosition(reload: boolean = false, checkAuth: boolean = false): Promise<any> {
     if (this.nativeService.isMobile) {
-      return this.nativeService.getUserLocation();
+      return this.nativeService.getUserLocation(checkAuth);
     } else {
       let ua = window.navigator.userAgent.toLowerCase();
       console.log(ua);

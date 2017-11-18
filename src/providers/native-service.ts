@@ -19,6 +19,8 @@ declare var LocationPlugin;
 @Injectable()
 export class NativeService {
 
+  private isShowLocationAlert: boolean = false;
+
   constructor(
     private platform: Platform,
     private network: Network,
@@ -209,27 +211,91 @@ export class NativeService {
    * 获得用户当前坐标
    * @return {Promise<T>}
    */
-  getUserLocation(): Promise<any> {
+  getUserLocation(checkAuth: boolean = false): Promise<any> {
     return new Promise((resolve, reject) => {
       if (this.isMobile()) {
-        this.assertLocationService().subscribe(res => {
-          if (res) {
-            this.assertLocationAuthorization().subscribe(res => {
-              if (res) {
-                // this.getUserLocation()
-                this.getLocation().then(data => {
-                  resolve(data);
-                }).catch(error => reject(error));
-                // return this.getLocation(observer);
-              }
-            })
-          }
-        })
+        this.diagnostic.isLocationAvailable().then(() => {
+          this.diagnostic.isLocationEnabled().then(res => {
+            if (res) { // 已经开启了手机的定位服务
+              // 获取授权
+              this.diagnostic.isLocationAuthorized().then(auth => {
+                // alert('auth: ' + auth.toString());
+                if (auth) { // 已经授权，直接获取位置
+                  this.getLocation().then(data => resolve(data))
+                    .catch(error => reject(error));
+                } else { // 请求授权
+                  this._requestLocationAuth(checkAuth).then(() => {
+                    // 授权成功
+                    this.getLocation().then(data => resolve(data))
+                      .catch(error => reject(error));
+                  }).catch(error => reject(error));
+                }
+              }).catch(error => reject(error));
+            } else {
+              reject('未开启手机定位服务');
+            }
+          }).catch(error => reject('检查定位是否打开出错'));
+        }).catch(error => reject('设备不支持定位功能'));
       } else {
         console.log('非手机环境,即测试环境返回固定坐标');
         resolve({lng: 104.350912, lat: 30.670543});
       }
     });
+  }
+
+  private _requestLocationAuth(checkAuth): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.diagnostic.getLocationAuthorizationStatus()
+        .then(r => {
+          if (r === 'not_determined') {
+          // 请求授权
+            this.diagnostic.requestLocationAuthorization('when_in_use')
+              .then(resp => {
+              // alert(resp);
+
+                if (resp == 'DENIED_ALWAYS' || resp === 'denied') {//拒绝访问状态,必须手动开启
+              // observer.next(false);
+                  reject('未开启定位');
+                  this._showAlertOpenLocationSettings(true);
+                } else {
+                  // 授权成功，去获取位置
+                  resolve(true);
+                }
+            }).catch(error => reject(error));
+          } else if ( r === 'denied' || r === 'DENIED_ALWAYS' ) {
+            reject('未开启定位');
+            this._showAlertOpenLocationSettings(checkAuth);
+          } else {
+            resolve(true);
+          }
+
+        })
+        .catch(error => reject(error));
+    });
+  }
+
+  private _showAlertOpenLocationSettings(checkAuth) {
+    if (!checkAuth) return;
+    
+    if (this.isShowLocationAlert) return;
+    
+    this.isShowLocationAlert = true;
+
+    this.alertCtrl.create({
+      title: '缺少定位权限',
+      subTitle: '请在手机设置或app权限管理中开启',
+      buttons: [{text: '取消', handler: () => {
+        this.isShowLocationAlert = false;
+      }},
+        {
+          text: '去开启',
+          handler: () => {
+            this.isShowLocationAlert = false;
+            this.diagnostic.switchToSettings();
+          }
+        }
+      ]
+    }).present();
   }
 
   private getLocation(): Promise<any> {
@@ -254,11 +320,11 @@ export class NativeService {
           }).present();
         } else if (msg.indexOf('WIFI信息不足') != -1) {
           // alert('定位失败,请确保连上WIFI或者关掉WIFI只开流量数据')
-          alert('定位失败,请确保连上WIFI或者关掉WIFI只开流量数据');
+          // alert('定位失败,请确保连上WIFI或者关掉WIFI只开流量数据');
         } else if (msg.indexOf('网络连接异常') != -1) {
-          alert('网络连接异常,请检查您的网络是否畅通')
+          // alert('网络连接异常,请检查您的网络是否畅通')
         } else {
-          alert('位置错误,错误消息:' + msg);
+          // alert('位置错误,错误消息:' + msg);
           // this.logger.log(msg, '获取位置失败');
         }
       });
@@ -302,13 +368,18 @@ export class NativeService {
     return () => {
       return Observable.create(observer => {
         if (enabledLocationService) {
+          alert('enabled: true');
           observer.next(true);
         } else {
           this.diagnostic.isLocationEnabled().then(enabled => {
+            alert('enabled: ' + enabled.toString());
+
             if (enabled) {
               enabledLocationService = true;
               observer.next(true);
             } else {
+              observer.next(false);
+
               enabledLocationService = false;
               this.alertCtrl.create({
                 title: '您未开启位置服务',
@@ -324,19 +395,6 @@ export class NativeService {
               }).present();
             }
           }).catch(err => {
-            enabledLocationService = false;
-            this.alertCtrl.create({
-              title: '您未开启位置服务',
-              subTitle: '正在获取位置信息',
-              buttons: [{text: '取消'},
-                {
-                  text: '去开启',
-                  handler: () => {
-                    this.diagnostic.switchToLocationSettings();
-                  }
-                }
-              ]
-            }).present();
             // this.logger.log(err, '调用diagnostic.isLocationEnabled方法失败');
           });
         }
@@ -359,7 +417,7 @@ export class NativeService {
             } else {
               locationAuthorization = false;
               this.diagnostic.requestLocationAuthorization('when_in_use').then(res => {//请求定位权限
-                if (res == 'DENIED_ALWAYS') {//拒绝访问状态,必须手动开启
+                if (res == 'DENIED_ALWAYS' || res === 'denied') {//拒绝访问状态,必须手动开启
                   locationAuthorization = false;
                   this.alertCtrl.create({
                     title: '缺少定位权限',
@@ -373,6 +431,7 @@ export class NativeService {
                       }
                     ]
                   }).present();
+                  observer.next(false);
                 } else {
                   locationAuthorization = true;
                   observer.next(true);
