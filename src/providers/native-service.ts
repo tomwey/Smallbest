@@ -254,10 +254,11 @@ export class NativeService {
           }).present();
         } else if (msg.indexOf('WIFI信息不足') != -1) {
           // alert('定位失败,请确保连上WIFI或者关掉WIFI只开流量数据')
+          alert('定位失败,请确保连上WIFI或者关掉WIFI只开流量数据');
         } else if (msg.indexOf('网络连接异常') != -1) {
-          // alert('网络连接异常,请检查您的网络是否畅通')
+          alert('网络连接异常,请检查您的网络是否畅通')
         } else {
-          // alert('位置错误,错误消息:' + msg);
+          alert('位置错误,错误消息:' + msg);
           // this.logger.log(msg, '获取位置失败');
         }
       });
@@ -323,6 +324,19 @@ export class NativeService {
               }).present();
             }
           }).catch(err => {
+            enabledLocationService = false;
+            this.alertCtrl.create({
+              title: '您未开启位置服务',
+              subTitle: '正在获取位置信息',
+              buttons: [{text: '取消'},
+                {
+                  text: '去开启',
+                  handler: () => {
+                    this.diagnostic.switchToLocationSettings();
+                  }
+                }
+              ]
+            }).present();
             // this.logger.log(err, '调用diagnostic.isLocationEnabled方法失败');
           });
         }
@@ -344,7 +358,7 @@ export class NativeService {
               observer.next(true);
             } else {
               locationAuthorization = false;
-              this.diagnostic.requestLocationAuthorization('always').then(res => {//请求定位权限
+              this.diagnostic.requestLocationAuthorization('when_in_use').then(res => {//请求定位权限
                 if (res == 'DENIED_ALWAYS') {//拒绝访问状态,必须手动开启
                   locationAuthorization = false;
                   this.alertCtrl.create({

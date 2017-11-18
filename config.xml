@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.kekestudio.smallbest" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>小优大惠</name>
+    <name>smallbest</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="tomwey@163.com" href="http://small-best.com/">Afterwind</author>
     <content src="index.html" />
@@ -96,4 +96,5 @@
     <plugin name="cordova-plugin-whitelist" spec="^1.3.1" />
     <plugin name="cordova.plugins.diagnostic" spec="^3.7.1" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
+    <allow-navigation href="http://192.168.43.180:8100" />
 </widget>

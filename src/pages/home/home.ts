@@ -11,6 +11,8 @@ import { UserService } from '../../providers/user-service';
 
 // import { EventDetailPage } from "../event-detail/event-detail";
 import { PartinDetailPage } from '../partin-detail/partin-detail';
+import { NativeService } from '../../providers/native-service';
+import { Platform } from 'ionic-angular/platform/platform';
 
 // @IonicPage()
 @Component({
@@ -38,12 +40,13 @@ export class HomePage {
               private banners: BannersService,
               // private qqMaps: QQMaps,
               // private locService: LocationService,
-              // private platform: Platform,
+              private platform: Platform,
               private toolService: ToolService,
               private users: UserService,
               private app: App,
               // private splashScreen: SplashScreen,
-              private alertCtrl: AlertController
+              private alertCtrl: AlertController,
+              private nativeService: NativeService,
               ) 
   {
     this.loadData(null);
@@ -63,6 +66,12 @@ export class HomePage {
     //   })
     //   this.loadData(null);
     // });
+
+    this.platform.ready().then(() => {
+      setTimeout(() => {
+        this.nativeService.getUserLocation();
+      }, 100);
+    });
   }
 
   // gotoNewEvent() {

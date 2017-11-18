@@ -14,7 +14,7 @@ export class TabsPage {
 
   tab1Root = HomePage;
   tab2Root = NearbyPage;
-  tab3Root = CardPage;
+  // tab3Root = CardPage;
   tab4Root = SettingPage;
 
   cardBadges: string = "";
