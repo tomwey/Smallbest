@@ -49,7 +49,7 @@ export class HomePage {
               private nativeService: NativeService,
               ) 
   {
-    this.loadData(null);
+    // this.loadData(null);
   }
 
   ionViewDidLoad() {
@@ -68,9 +68,10 @@ export class HomePage {
     // });
 
     this.platform.ready().then(() => {
-      setTimeout(() => {
-        this.nativeService.getUserLocation();
-      }, 100);
+      // setTimeout(() => {
+      //   this.nativeService.getUserLocation();
+      // }, 100);
+      this.loadData(null);
     });
   }
 
@@ -182,19 +183,35 @@ export class HomePage {
   }
 
   private _loadBannersAndEvents(refresher) {
-    let promises: any[] = [];
-    
+
+    // let loc = null;
+    // if (this.position) {
+    //   loc = `${this.position.lng},${this.position.lat}`;
+    // }
+
+    this.nativeService.getUserLocation()
+      .then(pos => {
+        this._startLoad(pos, refresher);
+      })
+      .catch(error => {
+        this._startLoad(null, refresher);
+      });
+  }
+
+  private _startLoad(pos, refresher) {
     let loc = null;
-    if (this.position) {
-      loc = `${this.position.lng},${this.position.lat}`;
+    if (pos) {
+      loc = `${pos.lng},${pos.lat}`;
     }
+
+    let promises: any[] = [];
 
     if (!refresher) {
       promises.push(this.banners.getBanners(this.token, loc)
       .then(data => this.bannersData = data).catch());
     }
 
-    promises.push(this.partins.explore(loc)
+    promises.push(this.partins.list(loc)
       .then(data => {
         this.hbData = data ;
         this.needShowEmptyResult = (this.hbData.length === 0);

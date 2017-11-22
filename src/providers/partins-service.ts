@@ -19,6 +19,17 @@ export class PartinsService {
     
   }
 
+  // 获取红包列表
+  list(loc: string = null): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.user.token().then(token => {
+        this.api.get('partins', { token: token, loc: loc })
+          .then(data => resolve(data))
+          .catch(error => reject(error));
+      }).catch(error => reject(error));
+    });
+  }
+
   // 获取发现列表
   explore(loc: string = null): Promise<any> {
     return new Promise((resolve, reject) => {
