@@ -1,0 +1,18 @@
+page-explore {
+    .card-background-page {
+        ion-card {
+            position: relative;   
+            border-radius: 0;
+            box-shadow: none;
+            -webkit-box-shadow: none;
+        }
+
+        .card-expire {
+            position: absolute;
+            font-size: 1.4rem;
+            bottom: 6.6%;
+            right: 4.8%;
+            color: rgb(58,58,58);
+        }
+    }
+}

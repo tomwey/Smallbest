@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { HomePage } from '../home/home';
-import { NearbyPage } from "../nearby/nearby";
+// import { NearbyPage } from "../nearby/nearby";
 import { SettingPage } from '../setting/setting';
-import { CardPage } from '../card/card';
+// import { CardPage } from '../card/card';
 import { Events } from 'ionic-angular';
 import { BadgesService } from '../../providers/badges-service';
+import { ExplorePage } from '../explore/explore';
 
 // @IonicPage()
 @Component({
@@ -13,7 +14,8 @@ import { BadgesService } from '../../providers/badges-service';
 export class TabsPage {
 
   tab1Root = HomePage;
-  tab2Root = NearbyPage;
+  // tab2Root = NearbyPage;
+  tab2Root = ExplorePage;
   // tab3Root = CardPage;
   tab4Root = SettingPage;
 

@@ -16,6 +16,20 @@ export class CardsService {
     
   }
 
+  getCards(pos, pageNo: number = 1): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let loc = null;
+      if (pos) {
+        loc = `${pos.lng},${pos.lat}`;
+      }
+      this.user.token().then(token => {
+        this.api.get('cards', { token: token, loc: loc, page: pageNo })
+          .then(data => resolve(data))
+          .catch(error => reject(error));
+      }).catch(error => reject(error));
+    });
+  }
+
   getUserCards(pageNo: number = 1, pageSize: number = 20): Promise<any> {
     return new Promise((resolve, reject) => {
       this.user.token().then(token => {

@@ -7,11 +7,12 @@ import { MyApp } from './app.component';
 
 // Pages
 import { HomePage }         from "../pages/home/home";
-import { NearbyPage }       from "../pages/nearby/nearby";
+// import { NearbyPage }       from "../pages/nearby/nearby";
 import { SettingPage }      from "../pages/setting/setting";
 import { PartinDetailPage } from '../pages/partin-detail/partin-detail';
-import { CardPage }         from "../pages/card/card";
+// import { CardPage }         from "../pages/card/card";
 import { TabsPage }         from '../pages/tabs/tabs';
+import { ExplorePage }      from '../pages/explore/explore';
 
 // Services
 import { NativeService }    from '../providers/native-service';
@@ -42,12 +43,13 @@ import { FileOpener }   from '@ionic-native/file-opener';
 @NgModule({
   declarations: [
     MyApp,
-    NearbyPage,
+    // NearbyPage,
     SettingPage,
     PartinDetailPage,
-    CardPage,
+    // CardPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    ExplorePage,
   ],
   imports: [
     BrowserModule,
@@ -64,10 +66,11 @@ import { FileOpener }   from '@ionic-native/file-opener';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    NearbyPage,
+    // NearbyPage,
     SettingPage,
     PartinDetailPage,
-    CardPage,
+    // CardPage,
+    ExplorePage,
     HomePage,
     TabsPage
   ],

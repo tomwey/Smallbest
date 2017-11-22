@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ToolService } from '../../providers/tool-service';
 
@@ -11,7 +11,7 @@ import { Md5 } from 'ts-md5/dist/md5';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-
+@IonicPage()
 @Component({
   selector: 'page-card-detail',
   templateUrl: 'card-detail.html',

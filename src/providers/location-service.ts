@@ -23,7 +23,7 @@ export class LocationService {
    * @returns {Promise}
    */
   getUserPosition(reload: boolean = false, checkAuth: boolean = false): Promise<any> {
-    if (this.nativeService.isMobile) {
+    if (this.nativeService.isMobile()) {
       return this.nativeService.getUserLocation(checkAuth);
     } else {
       let ua = window.navigator.userAgent.toLowerCase();
