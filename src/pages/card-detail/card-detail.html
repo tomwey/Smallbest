@@ -30,7 +30,7 @@
     <ion-item>
       <p class="buy">售价：<span class="price">{{card.price === '0.00' ? '免费' : card.price + ' 元'}}</span></p>
       <ion-note item-right>
-        <button ion-button color="theme-red" (click)="take();">立即领取</button>
+        <button ion-button color="theme-red" (click)="take();" [disabled]="card.taked">{{card.taked ? '已领取' : '立即领取'}}</button>
       </ion-note>
     </ion-item>
 
