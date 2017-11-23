@@ -19,7 +19,12 @@ import { CardsService } from '../../providers/cards-service';
 export class ExplorePage {
 
   cardsData:  any = [];
+  hasMore: boolean = false;
   
+  pageNo: number = 1;
+  pageSize: number = 20;
+  totalPage: number = 1;
+
   errorOrEmptyMessage: string = '暂无数据';
   needShowEmptyResult: boolean = false;
 
@@ -48,45 +53,77 @@ export class ExplorePage {
       this.toolService.showLoading('拼命加载中...');
     }
     
-    this.locService.getUserPosition(true, true)
+    this.pageNo = 1;
+
+    this.loadData();
+  }
+
+  loadData(): Promise<any> {
+    return new Promise(resolve => {
+      this.locService.getUserPosition(true, false)
       .then(pos => {
         // 获取优惠券数据
-        this._startLoad(pos,refresher);
+        this._startLoad(pos,null).then(() => resolve(true));
       })
       .catch(error => {
-        this._startLoad(null,refresher);
+        this._startLoad(null,null).then(() => resolve(true));
       });
+    });
   }
 
   gotoCardDetail(card) {
     this.app.getRootNavs()[0].push('CardDetailPage', card);
   }
 
-  private _startLoad(pos, refresher) {
-    this._loadData(pos)
-    .then(data => {
-      this.toolService.hideLoading();
+  doInfinite(e): void {
+    if (this.pageNo < this.totalPage) {
+      this.pageNo ++;
 
-      this.cardsData = data;
+      this.loadData().then(() => {
+        e.complete();
+      });
 
-      if (this.cardsData.length === 0) {
-        this.errorOrEmptyMessage = '暂无数据';
-        this.needShowEmptyResult = true;
-      }
-
-      if (refresher) {
-        refresher.complete();
-      }
-    }).catch(error => {
-      this.toolService.hideLoading();
-
-      this.errorOrEmptyMessage = 'Oops, 加载出错了！';
-      this.needShowEmptyResult = true;
-    });
+    }
   }
 
-  private _loadData(pos): Promise<any> {
-    return this.cards.getCards(pos);
+  private _startLoad(pos, refresher): Promise<any> {
+    return new Promise(resolve => {
+      this.cards.getCards(pos, this.pageNo, this.pageSize)
+        .then(data => {
+          this.toolService.hideLoading();
+          
+          if (this.pageNo === 1) {
+            this.cardsData = data.data || data;
+            // console.log(data.data);
+            this.needShowEmptyResult = this.cardsData.length === 0;
+          } else {
+            this.needShowEmptyResult = false;
+
+            let temp = this.cardsData || [];
+            this.cardsData = temp.concat(data.data || data);
+          }
+          
+          this.totalPage = Math.floor((data.total + this.pageSize - 1) / this.pageSize); 
+          this.hasMore = this.totalPage > this.pageNo;
+
+          resolve();
+        })
+        .catch(error => {
+          // console.log(error);
+          this.toolService.hideLoading();
+          if (this.pageNo === 1) {
+            this.errorOrEmptyMessage = 'Oops, 加载出错了！';
+            this.needShowEmptyResult = true;
+          } else {
+            this.needShowEmptyResult = false;
+            setTimeout(() => {
+              this.toolService.showToast(error);
+            }, 100);
+          }
+
+          resolve();
+        });
+    });
   }
 
 }

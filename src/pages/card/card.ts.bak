@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ToolService } from '../../providers/tool-service';
 import { CardsService } from '../../providers/cards-service';
-import { CardDetailPage } from '../card-detail/card-detail'; 
+// import { CardDetailPage } from '../card-detail/card-detail'; 
 import { BadgesService } from '../../providers/badges-service';
 
 @Component({
@@ -129,7 +129,7 @@ export class CardPage {
   }
 
   gotoCardDetail(card): void {
-    this.navCtrl.push(CardDetailPage, card);
+    this.navCtrl.push('CardDetailPage', card);
   }
 
 }

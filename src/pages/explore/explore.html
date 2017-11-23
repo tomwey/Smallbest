@@ -25,9 +25,9 @@
     <div class="cards" *ngIf="cardsData.length > 0">
       <ion-card *ngFor="let card of cardsData" (click)="gotoCardDetail(card)" tappable>
         <img [src]="card.image">
-        <div class="card-expire">
+        <!-- <div class="card-expire">
           {{card.expire_time}} 有效
-        </div>
+        </div> -->
       </ion-card>
     </div>
   
