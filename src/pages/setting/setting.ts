@@ -87,7 +87,7 @@ export class SettingPage {
 
   gotoMyCards(): void {
     // this.navCtrl.push('MyCardsPage');
-    this.app.getRootNavs()[0].push('MyCardsPage');
+    this.app.getRootNavs()[0].push('UserCardPage');
   }
 
   gotoCharge(): void {

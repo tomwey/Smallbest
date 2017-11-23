@@ -1,0 +1,36 @@
+<!--
+  Generated template for the UserCardPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+
+  <ion-navbar>
+    <ion-title>我领取的卡</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="card-background-page">
+    <div class="empty-result" *ngIf="needShowEmptyResult">
+      <p>{{errorOrEmptyMessage}}</p>
+    </div>
+  
+    <div class="cards" *ngIf="cardsData.length > 0">
+      <ion-card *ngFor="let card of cardsData" (click)="gotoCardDetail(card)" tappable>
+        <img [src]="card.image">
+        <div class="card-expire">
+          {{card.expire_time}} 有效
+        </div>
+      </ion-card>
+    </div>
+  
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" [enabled]="hasMore">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="正在加载...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    
+  </ion-content>

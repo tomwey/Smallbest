@@ -54,9 +54,6 @@
       <ion-note class="balance" item-right>{{user.balance}} 元</ion-note>
     </button>
 
-    <button ion-item (click)="gotoHBHistory()">
-      <ion-icon name="ios-list-box-outline" item-left></ion-icon> 广告参与历史
-    </button>
     <!-- <button ion-item (click)="gotoUserPay()">
       <ion-icon name="ios-dikou-outline" item-left></ion-icon> 余额抵扣
     </button> -->
@@ -66,6 +63,15 @@
     <button ion-item (click)="gotoHBHistory()">
       <ion-icon name="ios-list-box-outline" item-left></ion-icon> 抢红包历史
     </button> -->
+  </ion-list>
+
+  <ion-list>
+    <button ion-item (click)="gotoHBHistory()">
+      <ion-icon name="ios-list-box-outline" item-left></ion-icon> 抢红包历史
+    </button>
+    <button ion-item (click)="gotoMyCards()">
+      <ion-icon name="ios-smart-outline" item-left></ion-icon> 领取的卡
+    </button>
   </ion-list>
   <!-- <ion-list> -->
     <!-- <button ion-item (click)="gotoInvite()">

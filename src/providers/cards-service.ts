@@ -61,7 +61,7 @@ export class CardsService {
   getUserCards(pageNo: number = 1, pageSize: number = 20): Promise<any> {
     return new Promise((resolve, reject) => {
       this.user.token().then(token => {
-        this.api.get('user/cards', { token: token, page: pageNo, size: pageSize })
+        this.api.get('cards/my_list', { token: token, page: pageNo, size: pageSize })
           .then(data => resolve(data))
           .catch(error => reject(error));
       }).catch(error => reject(error));
