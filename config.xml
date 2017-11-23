@@ -3,7 +3,7 @@
     <name>smallbest</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="tomwey@163.com" href="http://small-best.com/">Afterwind</author>
-    <content original-src="index.html" src="http://10.19.2.7:8100" />
+    <content original-src="index.html" src="http://10.19.2.7:8101" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CardsService } from '../../providers/cards-service';
 import { ToolService } from '../../providers/tool-service';
+import { App } from 'ionic-angular/components/app/app';
 
 /**
  * Generated class for the UserCardPage page.
@@ -31,6 +32,7 @@ export class UserCardPage {
               public navParams: NavParams,
               private cards: CardsService,
               private toolService: ToolService,
+              private app: App,
             ) {
   }
 
@@ -107,6 +109,10 @@ export class UserCardPage {
       });
 
     }
+  }
+
+  gotoCardDetail(card) {
+    this.app.getRootNavs()[0].push('UserCardDetailPage', card)
   }
 
 }
