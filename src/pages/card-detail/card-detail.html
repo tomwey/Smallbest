@@ -18,10 +18,50 @@
 </ion-header>
 
 <ion-content>
-  <iframe id="iframe" class="iframe"
-    sandbox="allow-scripts allow-top-navigation allow-pointer-lock allow-same-origin allow-popups allow-forms"
-    [src]="secUrl"
-    (load)="loaded()">
+  <ion-card>
+    <img [src]="card.image">
+    <ion-item>
+      <ion-avatar item-left>
+        <img [src]="card.owner.avatar">
+      </ion-avatar>
+      <h2 text-wrap>{{card.owner.name}}</h2>
+      <p text-wrap>{{card.owner.bio}}</p>
+    </ion-item>
+    <ion-item>
+      <p class="buy">售价：<span class="price">{{card.price === '0.00' ? '免费' : card.price + ' 元'}}</span></p>
+      <ion-note item-right>
+        <button ion-button color="theme-red">立即领取</button>
+      </ion-note>
+    </ion-item>
+
+    <ion-item class="location">
+      <ion-icon name="ios-pin-outline"></ion-icon>
+        {{card.owner.address}}
+    </ion-item>
+  </ion-card>
   
-</iframe>
+  <ion-card>
+    <ion-card-header>
+      使用说明
+    </ion-card-header>
+  
+    <ion-card-content>
+      <div class="body" [innerHTML]="card.body">
+
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+      <ion-card-header>
+        温馨提示
+      </ion-card-header>
+    
+      <ion-card-content>
+        <div class="tips">
+          本优惠券最终解释权归商家所有
+        </div>
+      </ion-card-content>
+    </ion-card>
+
 </ion-content>
