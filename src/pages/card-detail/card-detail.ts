@@ -24,6 +24,8 @@ export class CardDetailPage {
     this.card = this.navParams.data;
   }
 
-  
+  take() {
+    
+  }
 
 }

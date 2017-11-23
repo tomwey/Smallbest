@@ -8,11 +8,11 @@
 
   <ion-navbar>
     <ion-title>详情</ion-title>
-    <ion-buttons end>
+    <!-- <ion-buttons end>
       <button ion-button icon-only (click)="refresh();">
         <ion-icon name="ios-refresh-outline"></ion-icon>
       </button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-navbar>
 
 </ion-header>
@@ -30,13 +30,13 @@
     <ion-item>
       <p class="buy">售价：<span class="price">{{card.price === '0.00' ? '免费' : card.price + ' 元'}}</span></p>
       <ion-note item-right>
-        <button ion-button color="theme-red">立即领取</button>
+        <button ion-button color="theme-red" (click)="take();">立即领取</button>
       </ion-note>
     </ion-item>
 
     <ion-item class="location">
-      <ion-icon name="ios-pin-outline"></ion-icon>
-        {{card.owner.address}}
+      <ion-icon name="ios-pin-outline" item-start></ion-icon>
+        <span text-wrap>{{card.owner.address}}</span>
     </ion-item>
   </ion-card>
   
