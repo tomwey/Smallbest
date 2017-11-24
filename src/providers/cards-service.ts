@@ -68,6 +68,16 @@ export class CardsService {
     });
   }
 
+  getUserCardBody(userCardID: number): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.user.token().then(token => {
+        this.api.get(`cards/my_list/${userCardID}/body`, { token: token })
+          .then(data => resolve(data))
+          .catch(error => reject(error));
+      })
+    });
+  }
+
   getMyCards(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.user.token().then(token => {
