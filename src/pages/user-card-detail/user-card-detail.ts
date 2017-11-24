@@ -30,6 +30,10 @@ export class UserCardDetailPage {
     this.loadData();
   }
 
+  reload() {
+    this.loadData();
+  }
+
   loadData() {
     this.tool.showLoading('加载中...');
     this.cards.getUserCardBody(this.userCard.id)

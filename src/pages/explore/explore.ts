@@ -63,10 +63,10 @@ export class ExplorePage {
       this.locService.getUserPosition(true, false)
       .then(pos => {
         // 获取优惠券数据
-        this._startLoad(pos,null).then(() => resolve(true));
+        this._startLoad(pos,null).then((val) => resolve(val));
       })
       .catch(error => {
-        this._startLoad(null,null).then(() => resolve(true));
+        this._startLoad(null,null).then((val) => resolve(val));
       });
     });
   }
@@ -90,8 +90,6 @@ export class ExplorePage {
     return new Promise(resolve => {
       this.cards.getCards(pos, this.pageNo, this.pageSize)
         .then(data => {
-          this.toolService.hideLoading();
-          
           if (this.pageNo === 1) {
             this.cardsData = data.data || data;
             // console.log(data.data);
@@ -106,7 +104,9 @@ export class ExplorePage {
           this.totalPage = Math.floor((data.total + this.pageSize - 1) / this.pageSize); 
           this.hasMore = this.totalPage > this.pageNo;
 
-          resolve();
+          this.toolService.hideLoading();
+
+          resolve(true);
         })
         .catch(error => {
           // console.log(error);
@@ -121,7 +121,7 @@ export class ExplorePage {
             }, 100);
           }
 
-          resolve();
+          resolve(false);
         });
     });
   }
