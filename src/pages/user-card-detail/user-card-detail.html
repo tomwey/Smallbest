@@ -7,7 +7,7 @@
 <ion-header no-border>
 
   <ion-navbar>
-    <ion-title>{{browser.title}}</ion-title>
+    <ion-title>详情</ion-title>
     <ion-buttons end>
         <button ion-button icon-only (click)="reload()">
           <ion-icon name="ios-refresh-outline"></ion-icon>
@@ -18,13 +18,26 @@
 </ion-header>
 
 <ion-content class="content">
-  <div class="progress" [hidden]="browser.isLoaded">
-    <div class="progress-inner" id="progress"></div>
-  </div>
-
-    <iframe id="iframe" class="iframe"
-            sandbox="allow-scripts allow-top-navigation allow-pointer-lock allow-same-origin allow-popups allow-forms"
-            [src]="browser.secUrl"
-            (load)="loaded()">
-    </iframe>
+    <div class="card-detail">
+      <div class="user-card">
+        <img [src]="userCard.image">
+        <div class="expire-time">{{userCard.expire_time || '长期'}}有效</div>
+      </div>
+    
+      <div class="qrcode box">
+        <img [src]="userCard.active_qrcode" class="qrcode-image">
+        <p class="qrcode-desc">到店出示此二维码，微信扫码完成验证</p>
+      </div>
+      
+      <h2 class="title">使用说明</h2>
+      <div class="box body" [innerHTML]="userCard.body">
+        
+      </div>
+      
+      <div class="box use-prompt">
+          <h2>温馨提示</h2>
+        <p>每张抵扣卡只能使用一次。</p>
+        <p>此卡最终解释权归商家所有</p>
+      </div>
+    </div>
 </ion-content>
