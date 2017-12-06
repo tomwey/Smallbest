@@ -3,6 +3,7 @@ import { Http, Headers, RequestOptions, URLSearchParams, Response } from '@angul
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { Md5 } from 'ts-md5/dist/md5';
+import { NativeService } from './native-service';
 
 /*
   Generated class for the ApiService provider.
@@ -23,7 +24,10 @@ export const APP_VERSION = '3.5';
 @Injectable()
 export class ApiService {
 
-  constructor(public http: Http) {
+  constructor(
+    public http: Http,
+    private nativeService: NativeService
+  ) {
     // console.log('Hello ApiService Provider');
   }
 
@@ -45,6 +49,9 @@ export class ApiService {
     for (let param in params) {
       searchParams.set(param, params[param]);
     }
+
+    searchParams.set('av', this.nativeService.getAppVersion2());
+    searchParams.set('is_ios', this.nativeService.isIos() === true ? '1' : '0');
 
     // 参数签名
     searchParams.set('sign', ApiService.signParams(params));
@@ -68,6 +75,9 @@ export class ApiService {
 
     params.i  = i;
     params.ak = ak; 
+
+    params.av = this.nativeService.getAppVersion2();
+    params.is_ios = this.nativeService.isIos() === true ? '1' : '0';
 
     // 封装请求
     let headers = new Headers({ 'Content-Type': 'application/json' });

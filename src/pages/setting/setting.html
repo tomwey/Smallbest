@@ -38,7 +38,7 @@
     <div class="user-caption">
     <img [src]="user.avatar" class="avatar" />
     <h2 class="uid">{{user.nickname || user.id}}</h2>
-    <div class="user-balance">
+    <div class="user-balance" *ngIf="user.flag === false">
       <p>余额<span class="money">{{user.balance}}</span>元</p>
       <!-- <button ion-button outline small color="white" (click)="gotoCharge()">
         立即充值
@@ -48,7 +48,7 @@
       </button> -->
     </div>
     </div>
-  <ion-list>
+  <ion-list *ngIf="user.flag === false">
     <button ion-item (click)="gotoWallet()">
       <ion-icon name="ios-custom-wallet-outline" item-left></ion-icon> 钱包
       <ion-note class="balance" item-right>{{user.balance}} 元</ion-note>
@@ -66,7 +66,7 @@
   </ion-list>
 
   <ion-list>
-    <button ion-item (click)="gotoHBHistory()">
+    <button ion-item (click)="gotoHBHistory()" *ngIf="user.flag === false">
       <ion-icon name="ios-list-box-outline" item-left></ion-icon> 抢红包历史
     </button>
     <button ion-item (click)="gotoMyCards()">
@@ -93,7 +93,7 @@
     </button>
   </ion-list> -->
   <ion-list>
-    <button ion-item (click)="bindWX();" *ngIf="user.bind_wx === false">
+    <button ion-item (click)="bindWX();" *ngIf="user.bind_wx === false && user.flag === false">
       <ion-icon name="ios-link-outline" item-left></ion-icon> 绑定微信
     </button>
     <!--<ion-item-divider color="light"></ion-item-divider>-->
@@ -101,7 +101,7 @@
       <ion-icon name="ios-flash-outline" item-left></ion-icon> 用户协议</button>
     <!-- <button ion-item (click)="gotoFeedback()">
       <ion-icon name="ios-create-outline" item-left></ion-icon> 意见反馈</button> -->
-    <button ion-item (click)="gotoHelp()">
+    <button ion-item (click)="gotoHelp()" *ngIf="user.flag === false">
       <ion-icon name="ios-help-circle-outline" item-left></ion-icon> 帮助中心</button>
     <button ion-item (click)="gotoAbout()"><ion-icon name="ios-information-circle-outline" item-left></ion-icon> 关于</button>
   </ion-list>

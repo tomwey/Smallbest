@@ -51,6 +51,10 @@ export class NativeService {
     }
   }
 
+  getAppVersion2(): string {
+    return '1.0.0';
+  }
+
   /**
    * 获取设备UUID
    */

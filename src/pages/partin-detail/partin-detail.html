@@ -25,7 +25,7 @@
       <!-- 商家基础信息 -->
       <ion-item>
         <h2 text-wrap>{{partin.title}}</h2>
-        <p class="stats">
+        <p class="stats" *ngIf="partin.flag === false">
           <span class="data">
             人气 {{partin.view_count}}, 
             分享 {{partin.share_count}}, 
@@ -53,7 +53,7 @@
       </ion-item>
     </ion-card>
     <!-- 活动规则 -->
-    <ion-card *ngIf="partin.rule">
+    <ion-card *ngIf="partin.rule && partin.flag === false">
       <ion-card-header>
         {{partin.rule.name}}
       </ion-card-header>

@@ -60,7 +60,7 @@ export class ExplorePage {
 
   loadData(): Promise<any> {
     return new Promise(resolve => {
-      this.locService.getUserPosition(true, false)
+      this.locService.getUserPosition(true, true)
       .then(pos => {
         // 获取优惠券数据
         this._startLoad(pos,null).then((val) => resolve(val));
