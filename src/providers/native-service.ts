@@ -51,6 +51,9 @@ export class NativeService {
     }
   }
 
+  /**
+   * 注意每次升级版本的时候需要同步修改该方法的值
+   */
   getAppVersion2(): string {
     return '1.0.0';
   }
@@ -312,6 +315,7 @@ export class NativeService {
     this.alertCtrl.create({
       title: '缺少定位权限',
       subTitle: '请在手机设置或app权限管理中开启',
+      enableBackdropDismiss: false,
       buttons: [{text: '取消', handler: () => {
         this.isShowLocationAlert = false;
       }},
