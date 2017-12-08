@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild,ElementRef } from '@angular/core';
 import { NavController, NavParams, ModalController, App } from 'ionic-angular';
 import { PartinsService } from '../../providers/partins-service';
 import { ToolService } from '../../providers/tool-service';
 import { UserService } from '../../providers/user-service';
 import { BadgesService } from '../../providers/badges-service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { Platform } from 'ionic-angular';
 
 @Component({
   selector: 'page-partin-detail',
@@ -33,6 +35,7 @@ export class PartinDetailPage {
   oldPartin: any = null;
 
   // @ViewChild(Content) content: Content;
+  @ViewChild('partinDetail') partinDetail: ElementRef;
 
   constructor(
     public navCtrl: NavController, 
@@ -44,17 +47,38 @@ export class PartinDetailPage {
     // private platform: Platform,
     private badges: BadgesService,
     private app: App,
+    private sanitizer: DomSanitizer,
+    private platform: Platform
   ) {
     this.partin = this.navParams.data;
     this.oldPartin = this.navParams.data;
+
+    this.platform.ready().then(() => {
+      this.bindLinkEvents();
+    });
+  }
+
+  private bindLinkEvents() {
+    this.partinDetail.nativeElement.onclick = function (e: Event) {
+      e = e ||  window.event;
+      var element = (e.target || e.srcElement) as HTMLElement;
+      if (element.tagName == 'A' || element.tagName == 'a') {
+        window.open(element.getAttribute('href'), "_blank", "location=no,allowInlineMediaPlayback=yes,toolbarposition=top,closebuttoncaption=关闭");
+        // someFunction(element.href);
+        return false; // prevent default action and stop event propagation
+      }
+    };
   }
 
   ionViewDidLoad() {
-
     // if (this.platform.is('mobileweb') && this.platform.is('ios')) {
     //   this.content.enableJsScroll();
     // }
+  }
 
+  public getHtmlWithBypassedSecurity(code: string) {
+    if (!code) return '';
+    return this.sanitizer.bypassSecurityTrustHtml(code);
   }
 
   ionViewDidEnter() {

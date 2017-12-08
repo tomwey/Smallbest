@@ -43,7 +43,9 @@
           <!-- </ion-list> -->
       <!-- 活动详情 -->
       <ion-card-content no-margin no-padding>
-        <div class="event-body" [innerHTML]="partin.body"></div>
+        <div id="partin-detail" #partinDetail>
+          <div class="event-body" [innerHTML]="getHtmlWithBypassedSecurity(partin.body)"></div>
+        </div>
       </ion-card-content>
       <ion-item>
         <p text-wrap>如果发现内容不实，欢迎举报！</p>

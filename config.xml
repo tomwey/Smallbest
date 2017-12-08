@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.kekestudio.smallbest" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>小优大惠</name>
+    <name>smallbest</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="tomwey@163.com" href="http://small-best.com/">Afterwind</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://10.19.0.129:8101" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -11,6 +11,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <allow-intent href="*" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="16" />
     <preference name="BackupWebStorage" value="none" />
@@ -82,6 +83,9 @@
     <allow-navigation href="http://192.168.43.180:8100" />
     <allow-navigation href="http://10.19.2.7:8101" />
     <allow-navigation href="http://10.19.2.7:8100" />
+    <allow-navigation href="*" />
+    <allow-navigation href="http://10.19.0.129:8102" />
+    <allow-navigation href="http://10.19.0.129:8101" />
     <engine name="android" spec="^6.2.3" />
     <engine name="ios" spec="^4.4.0" />
     <plugin name="com.kit.cordova.amaplocation" spec="git+https://github.com/yanxiaojun617/com.kit.cordova.amaplocation.git" />
