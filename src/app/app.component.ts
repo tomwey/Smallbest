@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from "../pages/tabs/tabs";
 // import { AccountBindPage } from '../pages/account-bind/account-bind';
 import { UserService } from '../providers/user-service';
+import { JPushService } from '../providers/jpush-service';
 // import { ToolService } from '../providers/tool-service';
 // import { LocationService } from "../providers/location-service";
 // import { LoginPage } from '../pages/login/login';
@@ -26,9 +27,12 @@ export class MyApp {
               // private locService: LocationService,
               // private events: Events,
               // private nativeService: NativeService
+              private jpush: JPushService
               ) {
     platform.ready().then(() => {
       statusBar.styleLightContent();
+      
+      this.jpush.init();
 
       // 隐藏splash
       setTimeout(() => {

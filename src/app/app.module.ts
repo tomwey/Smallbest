@@ -39,6 +39,7 @@ import { Diagnostic }   from '@ionic-native/diagnostic';
 import {File}           from "@ionic-native/file";
 import {FileTransfer }  from '@ionic-native/file-transfer';
 import { FileOpener }   from '@ionic-native/file-opener';
+import { JPushService } from '../providers/jpush-service';
 
 @NgModule({
   declarations: [
@@ -96,6 +97,7 @@ import { FileOpener }   from '@ionic-native/file-opener';
     BannersService,
     CardsService,
     BadgesService,
+    JPushService,
     GlobalData,
   ]
 })
