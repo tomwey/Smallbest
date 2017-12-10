@@ -165,18 +165,40 @@ export class HomePage {
   }
 
   openBanner(banner) {
-    if (banner.partin) {
-      this.gotoDetail(banner.partin);
+    console.log(banner);
+    if (banner.type === 0) {
+      return;
     }
 
-    if (banner.ad) {
-      this.app.getRootNavs()[0].push('CommWeb', { slug: banner.ad.slug, title: banner.ad.title });
+    // 打开网页
+    if (banner.type === 1) {
+      window.open(banner.link, "_blank", "location=no,allowInlineMediaPlayback=yes,toolbarposition=top,closebuttoncaption=关闭");
+      return;
     }
 
-    if (banner.link && banner.link.length != 0) {
-      // console.log('link');
-      window.location.href = banner.link;
+    // 打开红包广告
+    if (banner.type === 2) {
+      this.gotoDetail(banner.link);
+      return;
     }
+
+    // 打开优惠券
+    if (banner.type === 3) {
+      this.app.getRootNavs()[0].push('CardDetailPage', banner.link);
+      return;
+    }
+    // if (banner.partin) {
+    //   this.gotoDetail(banner.partin);
+    // }
+
+    // if (banner.ad) {
+    //   this.app.getRootNavs()[0].push('CommWeb', { slug: banner.ad.slug, title: banner.ad.title });
+    // }
+
+    // if (banner.link && banner.link.length != 0) {
+    //   // console.log('link');
+    //   window.location.href = banner.link;
+    // }
   }
 
   slideDidChange(): void {
@@ -227,15 +249,12 @@ export class HomePage {
         // console.log(this.eventsData);
         if (this.slides) {
           this.slides.autoplayDisableOnInteraction = false;
-          
+
+          this.slides.ngOnDestroy();
+          this.slides.initialSlide = 0;
           this.slides.update();
-
-          this.slides.startAutoplay();
-
-          this.slides.slideTo(0, 300);
+          this.slides.ngAfterContentInit();
         }
-
-        // console.log('ssssssssss');
 
         if (refresher) {
           refresher.complete();
@@ -247,7 +266,6 @@ export class HomePage {
         }
 
         this.toolService.hideLoading();
-
       });
   }
 
