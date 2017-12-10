@@ -34,6 +34,10 @@ export class MyApp {
       
       this.jpush.init();
 
+      document.addEventListener('jpush.receiveRegistrationId', (data?: any) => {
+        alert(data.registrationId);
+      }, false)
+
       // this.jpush.openOrReceiveNotification()
       //   .then(payload => {
 
