@@ -6,6 +6,7 @@ import { Device } from "@ionic-native/device";
 
 import { NativeService } from './native-service';
 import { AlertController } from 'ionic-angular';
+import { JPushService } from './jpush-service';
 
 // import { Http } from '@angular/http';
 // import 'rxjs/add/operator/map';
@@ -26,12 +27,14 @@ export class UserService {
               private device: Device,
               private nativeService: NativeService,
               private alertCtrl: AlertController,
+              private jpush: JPushService
             ) {
     // console.log('Hello UserService Provider');
     
   }
 
   saveToken(token: string): Promise<any> {
+    this.jpush.setAlias(token);
     return this.storage.set('token', token);
   }
 
@@ -92,6 +95,7 @@ export class UserService {
     return new Promise((resolve, reject) => {
       this.api.post('account/bind', { code: code })
         .then(data => {
+          this.jpush.setAlias(data.token);
           this.storage.set('token', data.token).then(data=>{
             resolve(data);
           }).catch(error=>reject(error));
@@ -105,6 +109,7 @@ export class UserService {
       this.token().then(token => {
         this.api.post('account/bind', { code: code, token: token })
         .then(data => {
+          this.jpush.setAlias(data.token);
           this.storage.set('token', data.token).then(data=>{
             resolve(data);
           }).catch(error=>reject(error));

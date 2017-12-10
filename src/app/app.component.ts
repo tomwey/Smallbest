@@ -34,6 +34,11 @@ export class MyApp {
       
       this.jpush.init();
 
+      // this.jpush.openOrReceiveNotification()
+      //   .then(payload => {
+
+      //   });
+
       // 隐藏splash
       setTimeout(() => {
         splashScreen.hide();

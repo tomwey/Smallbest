@@ -92,6 +92,7 @@ export class HomePage {
     
     if (this.slides) {
       // this.slides.loop = true;
+      // this.slides.autoplayDisableOnInteraction = false;
       this.slides.startAutoplay();
     }
   }  
@@ -199,6 +200,10 @@ export class HomePage {
     //   // console.log('link');
     //   window.location.href = banner.link;
     // }
+  }
+
+  autoPlay() {
+    this.slides.startAutoplay();
   }
 
   slideDidChange(): void {
