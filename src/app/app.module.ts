@@ -26,6 +26,7 @@ import { PartinsService }   from '../providers/partins-service';
 import { CardsService }     from '../providers/cards-service';
 import { BannersService}    from '../providers/banners-service';
 import { BadgesService}     from '../providers/badges-service';
+import { JPushService } from '../providers/jpush-service';
 
 // ionic native
 import { StatusBar }    from '@ionic-native/status-bar';
@@ -39,7 +40,7 @@ import { Diagnostic }   from '@ionic-native/diagnostic';
 import {File}           from "@ionic-native/file";
 import {FileTransfer }  from '@ionic-native/file-transfer';
 import { FileOpener }   from '@ionic-native/file-opener';
-import { JPushService } from '../providers/jpush-service';
+import { JPushPlugin } from '@ionic-native/jpush';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import { JPushService } from '../providers/jpush-service';
     File,
     FileTransfer,
     FileOpener,
+    JPushPlugin,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LocationService,
     ApiService,

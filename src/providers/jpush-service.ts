@@ -1,13 +1,19 @@
 import { Injectable } from '@angular/core';
 import { JPush } from 'ionic-native';
-import { retry } from 'rxjs/operators/retry';
+import { JPushPlugin } from '@ionic-native/jpush';
+// import { retry } from 'rxjs/operators/retry';
 
 @Injectable()
 export class JPushService {
 
   constructor(
+    private jpush: JPushPlugin,
             ) {
 
+  }
+
+  setApplicationBadge(badge: number) {
+    this.jpush.setApplicationIconBadgeNumber(badge);
   }
 
   /**

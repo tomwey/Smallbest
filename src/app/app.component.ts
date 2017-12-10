@@ -34,14 +34,16 @@ export class MyApp {
       
       this.jpush.init();
 
-      document.addEventListener('jpush.receiveRegistrationId', (data?: any) => {
-        alert(data.registrationId);
-      }, false)
+      this.jpush.setApplicationBadge(0);
 
-      // this.jpush.openOrReceiveNotification()
-      //   .then(payload => {
+      // document.addEventListener('jpush.receiveRegistrationId', (data?: any) => {
+      //   alert(data.registrationId);
+      // }, false)
 
-      //   });
+      this.jpush.openOrReceiveNotification()
+        .then(payload => {
+          alert(JSON.stringify(payload));
+        });
 
       // 隐藏splash
       setTimeout(() => {
@@ -53,6 +55,7 @@ export class MyApp {
           this.onPause();
         });
         platform.resume.subscribe(() => {
+          this.jpush.setApplicationBadge(0);
           this.onResume();
         });
       }
