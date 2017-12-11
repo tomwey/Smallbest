@@ -68,7 +68,7 @@ export class MyApp {
 
   private initJPush() {
     // 注册极光推送服务
-    this.jpush.init();
+    this.jpush.init().catch();
     
     // 处理收到通知
     this.events.subscribe('handle.notification', (data) => {

@@ -55,7 +55,7 @@ export class NativeService {
    * 注意每次升级版本的时候需要同步修改该方法的值
    */
   getAppVersion2(): string {
-    return '1.0.0';
+    return '1.0.2';
   }
 
   /**
