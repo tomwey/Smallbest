@@ -1,19 +1,42 @@
 import { Injectable } from '@angular/core';
 import { JPush } from 'ionic-native';
 import { JPushPlugin } from '@ionic-native/jpush';
-// import { retry } from 'rxjs/operators/retry';
+import { AlertController, Events } from 'ionic-angular';
+// import { ToolService } from './tool-service';
+// import { CardsService } from './cards-service';
+// import { PartinsService } from './partins-service';
+// import { PartinDetailPage } from '../pages/partin-detail/partin-detail';
 
 @Injectable()
 export class JPushService {
 
   constructor(
     private jpush: JPushPlugin,
-            ) {
+    private alertCtrl: AlertController,
+    // private app: App,
+    // private tool: ToolService,
+    // private cards: CardsService,
+    // private partins: PartinsService,
+    private events: Events,
+  ) {
 
   }
 
   setApplicationBadge(badge: number) {
     this.jpush.setApplicationIconBadgeNumber(badge);
+  }
+
+  handleNotification() {
+    // 打开通知
+    document.addEventListener("jpush.openNotification", (event?:any) => {
+      this._openPage(event);
+    }, false);
+    
+    // 收到通知
+    document.addEventListener("jpush.receiveNotification", (event?:any) => {
+      this.setApplicationBadge(0);
+      this._showAlert(event);
+    }, false);
   }
 
   /**
@@ -85,6 +108,44 @@ export class JPushService {
 
   private _handleNotification(data) {
     return data;
+  }
+
+  private _openPage(event) {
+    let extrasData = event.extras || event;
+    // let alertBody = event.aps || event;
+    this.events.publish('handle.notification', extrasData);
+  }
+
+  private _showAlert(event) {
+    let extrasData = event.extras || event;
+    let alertBody = event.aps || event;
+
+    let buttons;
+    if (extrasData.type === 0) {
+      buttons = ['确定'];
+    } else {
+      buttons = [
+        {
+          text: '忽略',
+          handler: () => {
+
+          }
+        },
+        {
+          text: '立即查看',
+          handler: () => {
+            this._openPage(event);
+          }
+        }
+      ]
+    };
+
+    this.alertCtrl.create({
+      title: extrasData.title || '',
+      subTitle: alertBody.alert || '',
+      enableBackdropDismiss: false,
+      buttons: buttons,
+    }).present();
   }
   
 }

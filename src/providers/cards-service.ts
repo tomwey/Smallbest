@@ -31,6 +31,20 @@ export class CardsService {
     });
   }
 
+  getCard(cardID, pos): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let loc = null;
+      if (pos) {
+        loc = `${pos.lng},${pos.lat}`;
+      }
+      this.user.token().then(token => {
+        this.api.get(`cards/${cardID}/body`, { token: token, loc: loc })
+          .then(data => resolve(data))
+          .catch(error => reject(error));
+      }).catch(error => reject(error));
+    });
+  }
+
   takeCard(card): Promise<any> {
     return new Promise((resolve, reject) => {
       this.user.token().then(token => {
