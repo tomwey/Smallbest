@@ -202,6 +202,9 @@ export class UserService {
     return new Promise((resolve, reject) => {
       this.token().then(token => {
         if (token) {
+          
+          this.jpush.setAlias(token);
+
           let checkAuth = this.nativeService.isIos() ? false : true;
           this.nativeService.getUserLocation(checkAuth).then(pos => {
             this._sendSession(action, token, `${pos.lng},${pos.lat}`).then(data => {

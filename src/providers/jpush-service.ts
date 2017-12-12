@@ -95,7 +95,8 @@ export class JPushService {
    * @param alias 别名 
    */
   setAlias(alias: string): Promise<any> {
-    return JPush.setAlias(alias);
+    return this.jpush.setAlias({ sequence: 1, alias: alias });
+    // return JPush.setAlias(alias);
   }
 
   /**
@@ -104,6 +105,7 @@ export class JPushService {
    */
   setTags(tags: string): Promise<any> {
     return JPush.setTags(tags);
+    // return this.jpush.setTags()
   }
 
   private _handleNotification(data) {
