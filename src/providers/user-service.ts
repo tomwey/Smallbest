@@ -335,7 +335,7 @@ export class UserService {
     if (resp.must_upgrade === true) {
       buttons = [{ text: '立即更新',
                     handler: data => {
-                      this.hasShownVersionAlert = false;
+                      // this.hasShownVersionAlert = false;
                       this.nativeService.downloadApp(resp.app_url);
                     } }];
     } else {
@@ -349,7 +349,7 @@ export class UserService {
         { 
           text: '立即更新',
           handler: data => {
-            this.hasShownVersionAlert = false;
+            // this.hasShownVersionAlert = false;
 
             this.nativeService.downloadApp(resp.app_url);
           } 
