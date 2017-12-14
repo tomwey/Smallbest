@@ -6,6 +6,7 @@ import { UserService } from '../../providers/user-service';
 import { BadgesService } from '../../providers/badges-service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Platform } from 'ionic-angular';
+import { NativeService } from '../../providers/native-service';
 
 @Component({
   selector: 'page-partin-detail',
@@ -48,7 +49,8 @@ export class PartinDetailPage {
     private badges: BadgesService,
     private app: App,
     private sanitizer: DomSanitizer,
-    private platform: Platform
+    private platform: Platform,
+    private naService: NativeService,
   ) {
     this.partin = this.navParams.data;
     this.oldPartin = this.navParams.data;
@@ -59,11 +61,12 @@ export class PartinDetailPage {
   }
 
   private bindLinkEvents() {
-    this.partinDetail.nativeElement.onclick = function (e: Event) {
+    this.partinDetail.nativeElement.onclick = (e: Event) => {
       e = e ||  window.event;
       var element = (e.target || e.srcElement) as HTMLElement;
       if (element.tagName == 'A' || element.tagName == 'a') {
-        window.open(element.getAttribute('href'), "_blank", "location=no,allowInlineMediaPlayback=yes,toolbarposition=top,closebuttoncaption=关闭");
+        this.naService.openUrlInApp(element.getAttribute('href'));
+        // window.open(element.getAttribute('href'), "_blank", "location=yes,allowInlineMediaPlayback=yes,toolbarposition=top,closebuttoncaption=关闭");
         // someFunction(element.href);
         return false; // prevent default action and stop event propagation
       }

@@ -87,6 +87,10 @@ export class NativeService {
   isMobile() {
     return this.platform.is('mobile') && !this.platform.is('mobileweb');
   }
+  openUrlInApp(url: string): void {
+    window.open(url, "_blank", 
+    `location=${this.isIos() ? 'no' : 'yes'},allowInlineMediaPlayback=yes,toolbarposition=top,closebuttoncaption=关闭`);
+  }
 
   /**
    * 通过浏览器打开url

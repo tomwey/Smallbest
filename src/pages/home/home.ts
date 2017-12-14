@@ -14,6 +14,7 @@ import { PartinDetailPage } from '../partin-detail/partin-detail';
 // import { NativeService } from '../../providers/native-service';
 import { Platform } from 'ionic-angular/platform/platform';
 import { LocationService } from '../../providers/location-service';
+import { NativeService } from '../../providers/native-service';
 
 // @IonicPage()
 @Component({
@@ -47,7 +48,7 @@ export class HomePage {
               private app: App,
               // private splashScreen: SplashScreen,
               private alertCtrl: AlertController,
-              // private nativeService: NativeService,
+              private nativeService: NativeService,
               ) 
   {
     // this.loadData(null);
@@ -173,7 +174,8 @@ export class HomePage {
 
     // 打开网页
     if (banner.type === 1) {
-      window.open(banner.link, "_blank", "location=no,allowInlineMediaPlayback=yes,toolbarposition=top,closebuttoncaption=关闭");
+      this.nativeService.openUrlInApp(banner.link);
+      // window.open(banner.link, "_blank", "location=no,allowInlineMediaPlayback=yes,toolbarposition=top,closebuttoncaption=关闭");
       return;
     }
 

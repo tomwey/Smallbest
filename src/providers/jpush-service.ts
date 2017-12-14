@@ -123,7 +123,7 @@ export class JPushService {
     let alertBody = event.aps || event;
 
     let buttons;
-    if (extrasData.type === 0) {
+    if (extrasData.mt === '0') {
       buttons = ['确定'];
     } else {
       buttons = [

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.kekestudio.smallbest" version="1.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>smallbest</name>
+    <name>小优大惠</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="tomwey@163.com" href="http://small-best.com/">Afterwind</author>
     <content src="index.html" />
